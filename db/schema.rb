@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702150650) do
+ActiveRecord::Schema.define(version: 20140702151218) do
 
   create_table "needs", force: true do |t|
     t.string  "need_type"
