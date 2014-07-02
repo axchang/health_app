@@ -1,0 +1,23 @@
+<h1>Requests Forum </h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Requestor Name</th>
+			<th>Request Category</th>
+			<th>Location</th>
+			<th>Date</th>
+			<th>Contact</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @requests.each do |request| %>
+			<tr>
+				<td><%= request.user.user_id %></td>
+				<td><%= request.user.need_type %></td>
+				<td><%= %></td>
+				<td>>%= %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>
