@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 #gems added by MPC
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
