@@ -12,6 +12,18 @@
   <div><%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
+   <div? <%= f.label "Name" %><br />
+	<%= f.text_field :username %></div>
+
+  <div><%= f.label "Organization" %><br />
+    <%= f.text_field :org_name %></div>
+
+  <div><%= f.label "Location" %><br />
+    <%= f.text_field :location %></div>
+
+  <div><%= f.label "Specialty" %><br />
+    <%= f.select :specialty, ["Hospital", "TBD", "TBD"] %></div>
+
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
