@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 #gems added by MPC
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'devise'
+gem 'active_enum'
 
 #development gems added by MPC
 group :development do

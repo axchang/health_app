@@ -1,5 +1,7 @@
 <h2>Sign up</h2>
 
+<!-- <% @locations = Location.all %> use this to call location resource; do same for specialty; build array in seed file--> 
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -18,11 +20,38 @@
   <div><%= f.label "Organization" %><br />
     <%= f.text_field :org_name %></div>
 
+<!-- This is really bootleg, but it works for now... -->
   <div><%= f.label "Location" %><br />
-    <%= f.text_field :location %></div>
+    <%= f.select :location, [
+      "Cape Town (City of)", 
+      "Beaufort West | Central Karoo", 
+      "Bergrivier | West Coast", 
+      "Bitou | Eden", 
+      "Breede Valley | Cape Winelands", 
+      "Cape Agulhas | Overberg", 
+      "Cederberg | West Coast", 
+      "Drakenstein | Cape Winelands", 
+      "George | Eden", 
+      "Hessequa | Eden", 
+      "Kannaland | Eden", 
+      "Knysna | Eden", 
+      "Laingsburg | Central Karoo", 
+      "Langeberg | Cape Winelands", 
+      "Matzikama | West Coast", 
+      "Mossel Bay | Eden", 
+      "Oudtshoorn | Eden", 
+      "Overstrand | Overberg", 
+      "Prince Albert | Central Karoo", 
+      "Saldanha Bay | West Coast", 
+      "Stellenbosch | Cape Winelands", 
+      "Swartland | West Coast", 
+      "Swellendam | Overberg", 
+      "Theewaterskloof | Overberg", 
+      "Witzenberg | Cape Winelands"
+      ] %></div>
 
   <div><%= f.label "Specialty" %><br />
-    <%= f.select :specialty, ["Hospital", "TBD", "TBD"] %></div>
+    <%= f.select :specialties, ["Pediatrics", "Oncology", "etc."]  %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

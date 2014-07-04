@@ -19,6 +19,7 @@ before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :new]
 
   def create
     @user = User.new(user_params)
+    
     if @user.save
       redirect_to users_path, notice: 'User was successfully created.'
     else
@@ -46,4 +47,5 @@ def update
   def user_params
     params.require(:user).permit(:username, :org_name, :location, :specialty)
   end
+
 end
