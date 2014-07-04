@@ -17,7 +17,8 @@ class RequestsController < ApplicationController
 	def create
 		@request = Request.new(request_params)
 		if @request.save
-			redirect_to confirmation
+			redirect_to requests_path
+			flash[:notice] = "Request was successfully placed."
 		else
 			flash[:notice] = "Sorry, the action could not be completed. Please try again."
 			render :new

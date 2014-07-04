@@ -2,6 +2,7 @@
 
 <table>
 	<thead>
+		<%= link_to "New Request", new_request_path %>
 		<tr>
 			<th>Requestor Name</th>
 			<th>Request Category</th>
@@ -13,10 +14,12 @@
 	<tbody>
 		<% @requests.each do |request| %>
 			<tr>
-				<td><%= request.user.user_id %></td>
-				<td><%= request.user.need_type %></td>
-				<td><%= %></td>
-				<td>>%= %></td>
+
+				<td><%= current_user.org_name %></td>
+				<td><%=  %></td>
+				<td><%= request.description %></td>
+				<td><%= request.created_at %></td>
+				<td><%= request.id %></td>
 			</tr>
 			<% end %>
 	</tbody>
