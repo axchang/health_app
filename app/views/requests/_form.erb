@@ -1,0 +1,11 @@
+<%= form_for(@request) do |f| %>
+	<div class = "field">
+		<%= f.label :current_user %><br>
+
+		<%= f.label "Description" %><br>
+		<%= f.text_field :description %><br>
+	</div>
+	<div class = "actions">
+		<%= f.submit %>
+	</div>
+<%end%>
