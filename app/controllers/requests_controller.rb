@@ -17,8 +17,7 @@ class RequestsController < ApplicationController
 	def create
 
 		@request = Request.new(request_params.merge({:user_id => current_user.id}))
-		if @request.save
-			raise	
+		if @request.save	
 			flash[:notice] = "Request was successfully placed."
 			redirect_to '/requests'
 		else
