@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20140705150300) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "needs"
     t.string   "need"
   end
 
