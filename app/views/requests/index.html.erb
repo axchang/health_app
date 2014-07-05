@@ -5,7 +5,8 @@
 		<%= link_to "New Request", new_request_path %>
 		<tr>
 			<th>Requestor Name</th>
-			<th>Request Category</th>
+			<th>Need_Id</th>
+			<th>Need Type</th>
 			<th>Location</th>
 			<th>Date</th>
 			<th>Contact</th>
@@ -15,7 +16,8 @@
 		<% @requests.each do |request| %>
 			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
 				<td><%= request.user.username %></td>
-				<td><%= request.need %></td>
+				<td><%= request.need_id %></td>
+				<td><%= Need.find(request.need_id).need_type %></td>
 				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
 				<td><%= request.user.email %></td>
