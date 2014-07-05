@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :requests
 	has_many :specialties
+	has_many :needoptins
 
 	# MPC - this is related to yml method of adding list, but is causing errors
 	# validates_inclusion_of :specialty, in: Choices['specialty']
