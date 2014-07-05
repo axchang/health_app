@@ -6,8 +6,8 @@
 		<%= f.label :description %><br>
 		<%= f.text_field :description %><br>
 		<!--Gives drop-down of need type for request filtering -->
-		<%= f.label :need, "Request Category" %>
-		<%= f.select :need, ["Medications", "Vaccinations", "Staff"] %>
+		<%= f.label "Request Category" %>
+		<%= f.select :need, ["a", "b", "c"]%>
 	</div>
 	<div class = "actions">
 		<%= f.submit %>

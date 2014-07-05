@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# MPC added - Default specialty values (to be modified)
+
+["Pediatrics", "Oncology", "etc."].each do |service_type|
+	Specialty.create(:service_type => service_type)
+end	

@@ -15,7 +15,7 @@
 		<% @requests.each do |request| %>
 			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
 				<td><%= request.user.username %></td>
-				<td><%= request.description %></td>
+				<td><%= request.need %></td>
 				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
 				<td><%= request.user.email %></td>
