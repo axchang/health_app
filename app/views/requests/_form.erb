@@ -7,7 +7,7 @@
 		<%= f.text_field :description %><br>
 		<!--Gives drop-down of need type for request filtering -->
 		<%= f.label "Type of Need" %>
-		<%= f.select :need_id, Need.all.pluck(:need_type, :id) %>
+		<%= f.select :need_id, @need_types %>
 	</div>
 	<div class = "actions">
 		<%= f.submit %>

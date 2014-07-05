@@ -1,0 +1,4 @@
+class NeedOptInsController < ApplicationController
+
+
+end
