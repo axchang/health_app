@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
 	end
 
 	def create
-		@request = Request.new(request_params)
+		@request = Request.new(request_params.merge({:user_id => current_user.id}))
 		if @request.save
 			redirect_to requests_path
 			flash[:notice] = "Request was successfully placed."
@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
 	end
 
 	def request_params
-		params.require(:request).permit(:description, :need, :user)
+		params.require(:request).permit(:description, :need, :user, :username)
 	end
 
 end

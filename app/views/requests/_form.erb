@@ -1,6 +1,6 @@
 <%= form_for(@request) do |f| %>
 	<div class = "field">
-		<%= f.label :current_user %><br>
+		<%= f.label current_user.org_name %><br>
 
 		<%= f.label :description %><br>
 		<%= f.text_field :description %><br>

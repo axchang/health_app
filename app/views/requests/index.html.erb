@@ -14,12 +14,11 @@
 	<tbody>
 		<% @requests.each do |request| %>
 			<tr>
-
-				<td><%= current_user.org_name %></td>
-				<td><%=  %></td>
+				<td><%= request.user.username %></td>
 				<td><%= request.description %></td>
+				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
-				<td><%= request.id %></td>
+				<td><%= request.user.email %></td>
 			</tr>
 			<% end %>
 	</tbody>
