@@ -1,4 +1,4 @@
 class Request < ActiveRecord::Base
-	belongs_to :need
+	has_one :need
 	belongs_to :user
 end

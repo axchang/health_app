@@ -1,6 +1,6 @@
 <h1>Requests Forum </h1>
 
-<table>
+<table class = "table table-hover">
 	<thead>
 		<%= link_to "New Request", new_request_path %>
 		<tr>
@@ -13,7 +13,7 @@
 	</thead>
 	<tbody>
 		<% @requests.each do |request| %>
-			<tr>
+			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
 				<td><%= request.user.username %></td>
 				<td><%= request.description %></td>
 				<td><%= request.user.location %></td>

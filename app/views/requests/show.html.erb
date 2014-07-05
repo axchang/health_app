@@ -1,0 +1,10 @@
+<h1>Request from <%= @request.user.org_name %></h1>
+<p>
+	Need type: <%= @request.need %><br>
+	Request location: <%= @request.user.location %><br>
+	Request Text: <%= @request.description %><br>
+
+
+</p>
+
+<%= link_to "Back", requests_path %>
