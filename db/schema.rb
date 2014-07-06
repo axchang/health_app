@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706122606) do
+ActiveRecord::Schema.define(version: 20140706131056) do
 
   create_table "locations", force: true do |t|
     t.string "local_muni"
   end
 
-  create_table "need_opt_ins", force: true do |t|
+  create_table "needoptins", force: true do |t|
     t.integer "user_id"
     t.integer "need_id"
   end
