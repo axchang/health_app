@@ -1,28 +1,23 @@
 <h1>Create an account</h1>
 
-<p>Create an account to receive alerts and post needs.</p>
-
 <%= form_for(@user, :url => users_path) do |f| %>
 
-	<%= f.label "Name" %>
-	<%= f.text_field :username %>
+	<%= f.label "Name" %><br/><%= f.text_field :username %>
 
- 	 <br/>
+      <br/>
+ 	 
 
-	<%= f.label "Organization" %>
-	<%= f.text_field :org_name %>
+	<%= f.label "Organization" %><br/><%= f.text_field :org_name %>
 
- 	 <br/>
+ 	   <br/>
 
-	<%= f.label "Location" %>
-	<%= f.text_field :location %>
+	<%= f.label "Location" %><br/><%= f.text_field :location %>
 
-	 	 <br/>
+	 	 <br/><br/>
 
-	<%= f.label "Specialty" %>
-	<%= f.select :specialty, ["Hospital", "TBD", "TBD"] %>
+	<%= f.label "Specialty" %><br/><%= f.select :specialty, ["Hospital", "TBD", "TBD"] %>
 
-  <br/>
+  <br/><br/>
 
   <%= f.submit %>
 <% end %>

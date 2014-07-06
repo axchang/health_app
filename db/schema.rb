@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140702152339) do
+ActiveRecord::Schema.define(version: 20140704150447) do
 
   create_table "needs", force: true do |t|
     t.string "need_type"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20140702152339) do
   create_table "specialties", force: true do |t|
     t.string  "service_type"
     t.integer "user_id"
+  end
+
+  create_table "statics", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

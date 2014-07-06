@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass'
 #gems added by MPC
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
