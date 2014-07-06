@@ -1,14 +1,15 @@
-class NeedOptInsController < ApplicationController
-before_action :set_needoptins, :only => [:show, :edit, :destroy]
+class NeedoptinsController < ApplicationController
+	before_action :set_needoptins, :only => [:show, :edit, :destroy]
 	# added by MPC - Amy please specify which actions under requests you would like to require authentication
 	before_action :authenticate_user!
 
 	def index
-		@needoptins = NeedOptIn.all
+		@needoptins = Needoptin.all
+		create_needs_hash
 	end
 
 	def new
-		@needoptin = NeedOptIn.new
+		@needoptin = Needoptin.new
 		set_need_types
 	end
 
@@ -21,10 +22,10 @@ before_action :set_needoptins, :only => [:show, :edit, :destroy]
 	end
 
 	def create
-		@needoptin = NeedOptIn.new(needoptin_params)
+		@needoptin = Needoptin.new(needoptin_params.merge({:user_id => current_user.id}))
 		if @needoptin.save
 			redirect_to needoptins_path
-			flash[:notice] = "Notification was successfully set-up! We'll be email you as soon as a new need is requested!"
+			flash[:notice] = "Notification was successfully established."
 		else
 			flash[:notice] = "Sorry, the action could not be completed. Please try again."
 			set_need_types
@@ -46,11 +47,11 @@ before_action :set_needoptins, :only => [:show, :edit, :destroy]
 	private
 
 	def set_needoptins
-		@needoptin = NeedOptIn.find(params[:id])
+		@needoptin = Needoptin.find(params[:id])
 	end
 
 	def needoptin_params
-		params.require(:needoptin).permit(:user_id, :need_id)
+		params.require(:needoptin).permit(:need_id)
 	end
 
 	def set_need_types
@@ -63,8 +64,5 @@ before_action :set_needoptins, :only => [:show, :edit, :destroy]
 			@needs_hash[t.id] = t.need_type
 		end
 	end
-
-end
-
-
+	
 end

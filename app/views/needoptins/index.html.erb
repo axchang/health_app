@@ -6,13 +6,15 @@
 		<tr>
 			<th>Need_Id</th>
 			<th>Need Type</th>
+			<th>Recipient</th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @needoptins.each do |needoptin| %>
-			<tr data-link="<%= needoptin_path(request) %>" class = "needoptins_table_row" >
-				<td><%= request.need_id %></td>
+			<% @needoptins.each do |needoptin| %>
+			<tr data-link="<%= needoptin_path(needoptin) %>" class = "needoptin_table_row" >
+				<td><%= needoptin.need_id %></td>
 				<td><%= @needs_hash[needoptin.need_id] %></td>
+				<td><%= needoptin.user.email %></td>
 			</tr>
 			<% end %>
 	</tbody>
