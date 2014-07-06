@@ -1,8 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'bootstrap-sass'
 #gems added by MPC
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+gem 'devise'
+gem 'active_enum'
+
+#development gems added by MPC
+group :development do
+	# gem 'jazz_hands'
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'quiet_assets'
+end
+
+gem "bootstrap-sass"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'

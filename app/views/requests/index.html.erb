@@ -1,10 +1,12 @@
 <h1>Requests Forum </h1>
 
-<table>
+<table class = "table table-hover">
 	<thead>
+		<%= link_to "New Request", new_request_path %>
 		<tr>
 			<th>Requestor Name</th>
-			<th>Request Category</th>
+			<th>Need_Id</th>
+			<th>Need Type</th>
 			<th>Location</th>
 			<th>Date</th>
 			<th>Contact</th>
@@ -12,11 +14,13 @@
 	</thead>
 	<tbody>
 		<% @requests.each do |request| %>
-			<tr>
-				<td><%= request.user.user_id %></td>
-				<td><%= request.user.need_type %></td>
-				<td><%= %></td>
-				<td>>%= %></td>
+			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
+				<td><%= request.user.username %></td>
+				<td><%= request.need_id %></td>
+				<td><%= @needs_hash[request.need_id] %></td>
+				<td><%= request.user.location %></td>
+				<td><%= request.created_at %></td>
+				<td><%= request.user.email %></td>
 			</tr>
 			<% end %>
 	</tbody>

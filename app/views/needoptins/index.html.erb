@@ -1,0 +1,21 @@
+<h1>Your Notifications </h1>
+
+<table class = "table table-hover">
+	<thead>
+		<%= link_to "New Notification", new_needoptin_path %>
+		<tr>
+			<th>Need_Id</th>
+			<th>Need Type</th>
+			<th>Recipient</th>
+		</tr>
+	</thead>
+	<tbody>
+			<% @needoptins.each do |needoptin| %>
+			<tr data-link="<%= needoptin_path(needoptin) %>" class = "needoptin_table_row" >
+				<td><%= needoptin.need_id %></td>
+				<td><%= @needs_hash[needoptin.need_id] %></td>
+				<td><%= needoptin.user.email %></td>
+			</tr>
+			<% end %>
+	</tbody>
+</table>

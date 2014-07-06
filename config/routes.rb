@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+devise_for :users
 resources :users, :only => [:index, :create, :new, :destroy]
 
 
@@ -22,7 +23,8 @@ resources :users, :only => [:index, :create, :new, :destroy]
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  resources :requests, only: [:index, :new, :create, :edit, :show, :update]
+resources :requests, only: [:index, :new, :create, :edit, :show, :update]
+resources :needoptins, only: [:index, :new, :create, :edit, :show, :update]
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

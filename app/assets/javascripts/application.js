@@ -12,6 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+
 //= require_tree .
+
 //= require bootstrap-sprockets
+
+
+jQuery(function($){
+	$("tr[data-link]").click(function() {
+		window.location = this.dataset.link
+	});
+})
+
