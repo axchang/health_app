@@ -22,6 +22,8 @@ root 'requests#index'
 resources :requests, only: [:index, :new, :create, :edit, :show, :update]
 resources :needoptins, only: [:index, :new, :create, :edit, :show, :update]
 
+get 'messages/new' => 'messages#new'
+
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 

@@ -1,0 +1,17 @@
+<%= form_tag do %>
+	<div class = "field">
+		<br>
+		<%= label_tag(:message, "Message") %> <br>
+		<%= text_area_tag :message, "", :size => "50x24" %> <br><br>
+
+		<%= check_box_tag(:fulfill) %>
+		<%= label_tag(:fulfill, "I am fulfilling this request") %>
+
+	</div>
+
+	<div class = "actions">
+
+	</div>
+
+	<br><br><br>
+<% end %>

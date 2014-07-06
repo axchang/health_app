@@ -20,7 +20,7 @@
 				<td><%= @needs_hash[request.need_id] %></td>
 				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
-				<td><%= link_to image_tag("/assets/email_icon.png"), new_request_path %></td>
+				<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
 			</tr>
 			<% end %>
 	</tbody>
