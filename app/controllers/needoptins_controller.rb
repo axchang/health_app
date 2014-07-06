@@ -1,5 +1,5 @@
 class NeedoptinsController < ApplicationController
-	before_action :set_user, only: [:show, :edit, :update, :destroy]
+	#before_action :set_user, only: [:show, :edit, :update, :destroy]
 	# added by MPC - Amy please specify which actions under requests you would like to require authentication
 	before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy, :new]
 	
@@ -34,7 +34,8 @@ class NeedoptinsController < ApplicationController
 	end
 
 	def destroy
-		@needoptin.destroy
+		@needoptin = Needoptin.find(params[:id])
+    	@needoptin.destroy
 
 		redirect_to needoptins_path
 	end

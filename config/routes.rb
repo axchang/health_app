@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-devise_for :users
+devise_for :users, controllers: { registrations: "users/registrations" }
 resources :users, :only => [:index, :create, :new, :destroy]
 
 
@@ -20,7 +20,7 @@ root 'requests#index'
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 resources :requests, only: [:index, :new, :create, :edit, :show, :update]
-resources :needoptins, only: [:index, :new, :create, :edit, :show, :update]
+resources :needoptins, only: [:index, :new, :create, :edit, :show, :update, :destroy]
 
 get 'messages/new' => 'messages#new'
 
