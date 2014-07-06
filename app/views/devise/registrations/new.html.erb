@@ -18,38 +18,11 @@
   <div><%= f.label "Organization" %><br />
     <%= f.text_field :org_name %></div>
 
-<!-- This is really bootleg, but it works for now... -->
   <div><%= f.label "Location" %><br />
-    <%= f.select :location, [
-      "Cape Town (City of)", 
-      "Beaufort West | Central Karoo", 
-      "Bergrivier | West Coast", 
-      "Bitou | Eden", 
-      "Breede Valley | Cape Winelands", 
-      "Cape Agulhas | Overberg", 
-      "Cederberg | West Coast", 
-      "Drakenstein | Cape Winelands", 
-      "George | Eden", 
-      "Hessequa | Eden", 
-      "Kannaland | Eden", 
-      "Knysna | Eden", 
-      "Laingsburg | Central Karoo", 
-      "Langeberg | Cape Winelands", 
-      "Matzikama | West Coast", 
-      "Mossel Bay | Eden", 
-      "Oudtshoorn | Eden", 
-      "Overstrand | Overberg", 
-      "Prince Albert | Central Karoo", 
-      "Saldanha Bay | West Coast", 
-      "Stellenbosch | Cape Winelands", 
-      "Swartland | West Coast", 
-      "Swellendam | Overberg", 
-      "Theewaterskloof | Overberg", 
-      "Witzenberg | Cape Winelands"
-      ] %></div>
+    <%= f.select :location, Location.all.pluck(:local_muni) %></div>
 
   <div><%= f.label "Specialty" %><br />
-    <%= f.select :specialties, Specialty.all.pluck(:service_type)  %></div>
+    <%= f.select :specialty, Specialty.all.pluck(:service_type)  %></div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
