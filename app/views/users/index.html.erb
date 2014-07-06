@@ -16,6 +16,7 @@
 <ul>
 	<% current_user.needoptins.all.each do |needoptin| %>
 	<li><%= @needs_hash[needoptin.need_id] %></li>
-</ul>
 			<% end %>
-	</tbody>
+</ul>
+
+<%= link_to "Update Notifications", needoptins_path %>
