@@ -17,7 +17,7 @@
 			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
 				<td><%= request.user.username %></td>
 				<td><%= request.need_id %></td>
-				<td><%= Need.find(request.need_id).need_type %></td>
+				<td><%= @needs_hash[request.need_id] %></td>
 				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
 				<td><%= request.user.email %></td>
