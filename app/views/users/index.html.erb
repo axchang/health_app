@@ -1,0 +1,21 @@
+<h1><%= current_user.username %>'s InsightHealth Profile</h1>
+
+<h2> Account Information</h2>
+<ul>
+	<li> Username: <%= current_user.username %></li>
+	<li>Email: <%= current_user.email %></li>
+	<li>Organization: <%= current_user.org_name %></li>
+	<li>Location: <%= current_user.location %></li>
+	<li>Specialty: <%= current_user.specialty %></li>
+</ul>
+
+<%= link_to "Update Account Information", edit_user_registration_path %>
+
+<h2>Notification Settings</h2>
+<p>You have requested to receive notification when there are requests in the following categories:</p>
+<ul>
+	<% current_user.needoptins.all.each do |needoptin| %>
+	<li><%= @needs_hash[needoptin.need_id] %></li>
+</ul>
+			<% end %>
+	</tbody>

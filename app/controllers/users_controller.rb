@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
 before_action :set_user, only: [:show, :edit, :update, :destroy]
-before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :new]     
+before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy, :new]     
       
 
   def index
     @users = User.all
+    create_needs_hash
   end
 
   def new
@@ -46,6 +47,13 @@ def update
 
   def user_params
     params.require(:user).permit(:username, :org_name, :location, :specialty)
+  end
+
+  def create_needs_hash
+    @needs_hash = {}
+    Need.all.each do |t|
+      @needs_hash[t.id] = t.need_type
+    end
   end
 
 end

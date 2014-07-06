@@ -10,7 +10,7 @@
 		</tr>
 	</thead>
 	<tbody>
-			<% @needoptins.each do |needoptin| %>
+			<% current_user.needoptins.all.each do |needoptin| %>
 			<tr data-link="<%= needoptin_path(needoptin) %>" class = "needoptin_table_row" >
 				<td><%= needoptin.need_id %></td>
 				<td><%= @needs_hash[needoptin.need_id] %></td>

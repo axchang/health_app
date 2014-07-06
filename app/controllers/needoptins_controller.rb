@@ -1,8 +1,8 @@
 class NeedoptinsController < ApplicationController
-	before_action :set_needoptins, :only => [:show, :edit, :destroy]
+	before_action :set_user, only: [:show, :edit, :update, :destroy]
 	# added by MPC - Amy please specify which actions under requests you would like to require authentication
-	before_action :authenticate_user!
-
+	before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy, :new]
+	
 	def index
 		@needoptins = Needoptin.all
 		create_needs_hash
