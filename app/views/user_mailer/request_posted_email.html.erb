@@ -1,6 +1,8 @@
-Dear <%= @request.user.username %>
+<!--This needs to be changed; the recipient of the email is wrong as is-->
+Dear <%= %>
 <br><br>
 
 The following health need request has been posted for one of the alert options you indicated: <br><br>
 
-Requestor: 
+Requestor: @request.user<br>
+Description: <%= @request.description %>
