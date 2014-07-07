@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "insighthealthza@gmail.com"
+  from: "insighthealthza@gmail.com"
 
   #passes in the request instance as well as the email of the recipient
   def request_posted_email(request, recipient)
@@ -10,7 +10,9 @@ class UserMailer < ActionMailer::Base
     mail(to: recipient, subject: "#{Need.find(request.need_id).need_type} Request Alert")
   end
 
-  def message_out_email(message, recipient)
-  	mail(to: recipient, subject: "Contact About your #{message}")
+  def message_out_email(current_user, message, recipient)
+    @current_user = current_user
+    @message = message
+  	mail(to: recipient, subject: "InsightHealth Request Reply")
   end
 end
