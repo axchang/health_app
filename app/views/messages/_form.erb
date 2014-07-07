@@ -5,11 +5,12 @@
 		<%= text_area_tag :message, "", :size => "50x24" %> <br><br>
 
 		<%= check_box_tag(:fulfill) %>
-		<%= label_tag(:fulfill, "I am fulfilling this request") %>
+		<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
 
 	</div>
 
 	<div class = "actions">
+		<%= submit_tag(value = "Send message") %>
 
 	</div>
 
