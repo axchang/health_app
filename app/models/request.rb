@@ -16,7 +16,7 @@ class Request < ActiveRecord::Base
 	    recipients = Need.find(iteration_id).users
 	    #Creates an array of all of the emails of the users with the given optin
 	    to_email = recipients.pluck(:email)
-
+	    #Actually delivers to each of the emails in the array
 	    to_email.each do |email|
 			UserMailer.request_posted_email(self, email).deliver
 		end

@@ -27,6 +27,7 @@ resources :requests, only: [:index, :new, :create, :edit, :show, :update]
 resources :needoptins, only: [:index, :new, :create, :edit, :show, :update, :destroy]
 
 get 'messages/new' => 'messages#new'
+get 'messages/confirmation' => 'messages#confirmation'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
