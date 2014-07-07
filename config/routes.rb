@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-devise_for :users
+devise_for :users, controllers: { registrations: "users/registrations" }
 resources :users, :only => [:index, :create, :new, :destroy]
 
 
@@ -24,7 +24,9 @@ resources :users, :only => [:index, :create, :new, :destroy]
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 resources :requests, only: [:index, :new, :create, :edit, :show, :update]
-resources :needoptins, only: [:index, :new, :create, :edit, :show, :update]
+resources :needoptins, only: [:index, :new, :create, :edit, :show, :update, :destroy]
+
+get 'messages/new' => 'messages#new'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

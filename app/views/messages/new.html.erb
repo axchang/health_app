@@ -1,0 +1,7 @@
+<h1>New Message to <%= "#{@request.user.org_name}" %> </h1>
+
+<h3>Recipient: <%= "#{@request.user.username}" %></h3>
+
+<%= render 'form' %>
+
+<%= link_to "Back", requests_path %>
