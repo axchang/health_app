@@ -1,0 +1,148 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */ 
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+
+.requests_table_row:hover {
+	background-color: beige;
+	cursor: hand;
+}
+
+/*Blue Border at the Top*/
+
+.fixed {
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 18%;
+	background-color: #C7E2EC;
+	border-bottom-style: solid;
+	border-bottom-color: #D3D3D3;
+	border-bottom-width: 3px;
+}
+
+/*Navigation*/
+
+#navigation li {
+margin: 0px;
+padding: 0px;
+float: right;
+position: relative;
+ display: inline-block;
+ margin-right: 20px;
+ margin: 60px;
+}
+
+
+#navigation ul a {
+	list-style: none;
+	text-decoration: none;
+	color: #205B75;
+	padding: 30px, 50px;
+	font-family:'Gotham', sans-serif;
+	font-size: 15px;
+	font-weight: 5px;
+}
+
+#navigation {
+	margin-right: 100px;
+	margin-left: 70px;
+}
+
+nav a:hover {
+	background-color: #205B75;
+	border-width: 10px;
+	padding: 30px, 50px;
+}
+
+/*Logo Color*/
+
+.logo{
+	margin-left: 100px;
+	margin-top: 10px;
+	padding: 20px, 30px;
+	position: fixed;
+
+}
+
+
+/*Carousel*/
+
+#carousel {
+	position: fixed;
+	top: 10px;
+	bottom: 0%;
+	margin-top: 0px;
+	padding-top: 0px;
+	width: 100%;
+    height: 80%;
+}
+
+
+.carousel-caption {
+	font-size: 20px;
+	color: #fff;
+}
+
+
+
+
+.item-active {
+	img {
+	width: 100%;
+	height: 100%;
+	top: 120px;
+	position: fixed;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+   }
+}
+
+
+
+.item {
+	img {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top:130px;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
+	}
+}
+
+
+
+
+
+
+
+
+
+

@@ -9,8 +9,9 @@ gem 'rails_12factor', group: :production
 
 #development gems added by MPC
 group :development do
-	gem 'jazz_hands'
+	# gem 'jazz_hands'
 	gem 'better_errors'
+	gem 'binding_of_caller'
 	gem 'quiet_assets'
 end
 

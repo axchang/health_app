@@ -9,9 +9,13 @@ resources :users, :only => [:index, :create, :new, :destroy]
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
-root 'requests#index'
+  get 'pages/about' => 'pages#about'
+  get 'pages/contact' => 'pages#contact'
+
+  root 'pages#home'
+
+# root 'requests#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
