@@ -5,6 +5,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'devise'
 gem 'active_enum'
 
+gem 'rails_12factor', group: :production
+
 #development gems added by MPC
 group :development do
 	gem 'jazz_hands'
