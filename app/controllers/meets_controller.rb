@@ -4,9 +4,9 @@ class MeetsController < ApplicationController
 	end
 
 	def confirmation
-		@request = Request.find(params[:request_id])
-		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
-		redirect_to activities_path
+		#@request = Request.find(params[:request_id])
+		#UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
+		#redirect_to activities_path
 	end
 
 end
