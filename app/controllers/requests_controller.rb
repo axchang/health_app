@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
 	before_action :set_requests, :only => [:show, :edit, :destroy]
 	# added by MPC - Amy please specify which actions under requests you would like to require authentication
-	before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:edit, :update, :destroy]   
 
 	def index
 		@requests = Request.all
