@@ -21,7 +21,7 @@ resources :users, :only => [:index, :create, :new, :destroy]
   #   get 'products/:id' => 'catalog#view'
 
 #for twilio
-  match 'twilio/process_sms' => 'twilio#process_sms'
+  get 'twilio/process_sms' => 'twilio#process_sms'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
