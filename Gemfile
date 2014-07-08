@@ -5,6 +5,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'devise'
 gem 'active_enum'
 
+#required for SMS functionality
+gem 'twilio-ruby'
+
 gem 'rails_12factor', group: :production
 
 #development gems added by MPC
