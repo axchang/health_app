@@ -9,4 +9,5 @@ class MessagesController < ApplicationController
 	end
 
 	def confirmation
+	end
 end
