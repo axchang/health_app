@@ -1,9 +1,12 @@
-<%= form_tag messages_confirmation_path, {:method => 'GET'} do %>
+<%= form_tag meets_confirmation_path, {:method => 'GET'} do %>
 	<div class = "field">
 		<br>
 		<%= label_tag(:message, "Message") %> <br>
-		<%= text_area_tag :message, "", :size => "50x24" %> <br><br>
-		
+		<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
+
+		<%= check_box_tag(:fulfill) %>
+		<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
+				
 		<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %> >
 	</div>
 
@@ -13,7 +16,3 @@
 
 	<br><br><br>
 <% end %>
-
-
-
-<!-- INSTALL ERB SNIPPETS -->

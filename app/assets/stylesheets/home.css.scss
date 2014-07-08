@@ -1,36 +1,34 @@
 /*Carousel*/
 
 #myCarousel {
-	position: relative;
-	top: -10%;
+	position: fixed;
 	width: 100%;
     height: 70%;
 }
 
-.carousel-caption {
+#carousel-controls {
+	position: fixed;
+	top:15px;
+	width: 100%;
+	height: 100%;
+}
+
+.container {
+	display: inline;
+	position: fixed;
+	margin-top: 30vh;
+}
+
+#carousel-caption{
+	background-color: rgba(255,255,255,0.4);
+	padding: 5%;
+	max-width: 50vw;
 	font-size: 20px;
 	color: #fff;
-	bottom: 40px;
-	/*z-index: 1;*/
+	z-index: 2;
 }
 
-#need {
-   img {
-   	width: 100%;
-	height: 100%;
-	right: 0px;
-	bottom: 0px;
-	top: 15px;
-	position: fixed;
-	}
-}
-
-#carousel-controls {
-position: fixed;
-top:15px;
-bottom:0px;
-width: 100%;
-height: 100%;
- margin-bottom: 0px;
- padding-bottom: 0px;
+#sign_in_button{
+	max-width: 20vw;
+	float:right;
 }
