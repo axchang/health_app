@@ -7,11 +7,11 @@
 		<%= check_box_tag(:fulfill) %>
 		<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
 				
-		<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %>  >
+		<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %> >
 	</div>
 
 	<div class = "actions">
-		<%= submit_tag "Send message", :message => :message %>
+		<%= submit_tag "Send message" %>
 	</div>
 
 	<br><br><br>

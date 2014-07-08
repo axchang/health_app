@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  from: "insighthealthza@gmail.com"
+  default from: "insighthealthza@gmail.com"
 
   #passes in the request instance as well as the email of the recipient
   def request_posted_email(request, recipient)
