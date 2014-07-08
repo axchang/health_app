@@ -21,31 +21,35 @@
 #carousel-caption {
 	background-color: rgba(255,255,255,0.4);
 	font-size: 20px;
+	text-align: center;
+	font-style: "sans-serif";
 	color: #fff;
 	padding: 5%;
 	z-index: 2;
-	max-width: 40vw;
+	max-width: 95vw;
+	margin-left: 30px;
+	margin-right: 30px;
 }
 
 .sign_in_button{
 	max-width: 30vw;
-	float: right;
-
-	
-
+	/*float: right;*/
+	z-index: 2;
+	font-style: "sans";
+	display: inline-block;
 	div {
-		display: block;
-		padding: 5%;
-		clear: both;
-	}
+	/*display: block;*/
+	padding: 5%;
+	float: right;
+	/*margin-top: 0px;*/
+}
 
 }
 
-/*#stethoscope {
+#stethoscope {
 	img {
 	width: 100%;
 	height: 100%;
-	top: 15px;
 	right: 0px;
 	bottom: 0px;
 	position: relative;
@@ -60,7 +64,7 @@
 	top: 15px;
 	position: fixed;
 	}
-}*/
+}
 
 #need {
    img {
