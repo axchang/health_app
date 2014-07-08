@@ -40,10 +40,8 @@ body {
 
 .fixed {
 	position: fixed;
-	top: 0px;
-	left: 0px;
 	width: 100%;
-	height: 8%;
+	height: 13%;
 	background-color: #FFF;
 	border-bottom-style: solid;
 	border-bottom-color: #D3D3D3;
@@ -57,7 +55,7 @@ body {
 	float: right;
 	position: fixed;
 	z-index: 1;
-	margin-left: 60vw
+	margin-left: 60vw;
 }
 
 .navigation li {
@@ -69,17 +67,15 @@ body {
 .navigation ul a {
 	text-decoration: none;
 	color: rgb(19, 58, 85);
-	padding: 30px, 50px;
 	font-family:'', sans-serif;
-	font-size: 15px;
+	font-size: 12px;
 	padding-right: 30px;
 
 }
 
-nav a:hover {
+nav ul a:hover {
 	background-color: #205B75;
 	border-width: 10px;
-	padding: 30px, 20px;
 }
 
 /*Logo Color*/
@@ -91,68 +87,7 @@ nav a:hover {
 	position: fixed;
 }
 
-
-/*Carousel*/
-
-#myCarousel {
-	position: relative;
-	top: 15px;
-	bottom: 0px;
-	margin-top: 0px;
-	padding-top: 0px;
-	width: 100%;
-    height: 70%;
-    /*z-index: -1;*/
-}
-
-
-.carousel-caption {
-	font-size: 20px;
-	color: #fff;
-	bottom: 40px;
-	/*z-index: 1;*/
-}
-
-#stethoscope {
-	img {
-	width: 100%;
-	height: 100%;
-	top: 15px;
-	right: 0px;
-	bottom: 0px;
-	/*position: relative;*/
-	}
-}
-
-
-#pharmacist {
-	img {
-	right: 0px;
-	bottom: 0px;
-	top: 15px;
-	position: fixed;
-	}
-}
-
-#need {
-   img {
-   	width: 100%;
-	height: 100%;
-	right: 0px;
-	bottom: 0px;
-	top: 15px;
-	position: fixed;
-}
-
 .logo_img{
 	max-width: 120px;
 	max-height: 240px;
 }
-
-
-
-
-
-
-
-
