@@ -62,16 +62,14 @@ body {
 	float: right;
 	list-style: none;
 	display: inline-block;
-	vertical-align: center;
 }
 
 .navigation ul a {
 	text-decoration: none;
 	color: rgb(19, 58, 85);
 	font-family:'', sans-serif;
-	font-size: 13px;
+	font-size: 12px;
 	padding-right: 30px;
-	vertical-align: baseline;
 
 }
 
@@ -93,3 +91,4 @@ nav ul a:hover {
 	max-width: 120px;
 	max-height: 240px;
 }
+

@@ -1,20 +1,13 @@
 /*Carousel*/
 
 #myCarousel {
-	position: fixed;
+	position:fixed;
 	width: 100%;
     height: 70%;
 }
 
 #carousel-controls {
 	position: fixed;
-	top:15px;
-	width: 100%;
-	height: 100%;
-}
-
-.container {
-	display: inline;
 	top: 15px;
 	width: 100%;
 	height: 100%;
@@ -38,7 +31,7 @@
 	max-width: 30vw;
 	float: right;
 
-	
+
 
 	div {
 		display: block;
@@ -76,8 +69,6 @@
 	right: 0px;
 	bottom: 0px;
 	top: 15px;
+	position: fixed;
 	}
 }
-
-
-

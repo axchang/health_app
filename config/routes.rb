@@ -30,7 +30,7 @@ get 'messages/new' => 'messages#new'
 get 'messages/confirmation' => 'messages#confirmation'
 get 'meets' => "meets#new"
 get 'meets/confirmation' => "meets#confirmation"
-get 'activities' => "activities#show"
+get 'activities' => "activities#index"
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
