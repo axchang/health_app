@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>HealthApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 	<div class="fixed">
-    <div class="logo">
-<%= image_tag 'insight.png', height: "100", width: "250"%>
-</div>
-</div>
-<div class="navigation">
-	<nav>
-  <ul>
-	 <li><a href="/home">CONTACT US</a></li>
-	 <li><a href="/about">ABOUT</a></li>
-	 <li><a href="/contact">HOME</a></li>
-	</ul>
-  </nav>
-</div>
+      <div class="logo">
+         <%= image_tag 'insight.png', :class => 'logo_img'%>
+      </div>
+   </div>
+   <div class="navigation">
+   <nav>
+      <ul>
+   	 <li><a href="/home">CONTACT US</a></li>
+   	 <li><a href="/about">ABOUT</a></li>
+   	 <li><a href="/contact">HOME</a></li>
+     </ul>
+   </nav>
+   </div>
 
 <!-- Added by MPC - needed for devise messages - feel free to move to a more appropriate place on page -->
  <p class="notice"><%= notice %></p>
