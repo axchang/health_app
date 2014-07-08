@@ -28,12 +28,15 @@
 }
 
 .sign_in_button{
-	max-width: 20vw;
+	max-width: 30vw;
 	float: right;
 
-	div{
+	
+
+	div {
 		display: block;
 		padding: 5%;
+		clear: both;
 	}
 
 }
