@@ -10,7 +10,7 @@ class TwilioController < ApplicationController
   # end
 
 	def process_sms
-	  do
+	  get '/' do
 	  session["counter"] ||= 0
 	  sms_count = session["counter"]
 		  if sms_count == 0
