@@ -15,6 +15,7 @@ class TwilioController < ApplicationController
 			render 'first_message.xml.erb', :content_type => 'text/xml'	    
 		  elsif session["counter"] == 1   
 		  	render 'second_message.xml.erb', :content_type => 'text/xml'
+		  	#this is tempermental - need to update id to make sure it's a real user that is in database (ie if you have cleared users or reloaded...)
 		  	@request = Request.create(need_id: params[:Body], user_id: 5)
 		  elsif session["counter"] == 2
 		  # #this may not be ideal if someone adds a request on the web during the SMS interaction
