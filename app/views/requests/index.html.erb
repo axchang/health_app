@@ -58,7 +58,6 @@
 		<%= link_to "New Request", new_request_path %>
 		<tr>
 			<th>Requestor Name</th>
-			<th>Need_Id</th>
 			<th>Need Type</th>
 			<th>Location</th>
 			<th>Date</th>
@@ -68,16 +67,16 @@
 	</thead>
 	<tbody>
 		<% @requests.each do |request| %>
-		<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
-			<td><%= request.user.username %></td>
-			<td><%= request.need_id %></td>
-			<td><%= @needs_hash[request.need_id] %></td>
-			<td><%= request.user.location %></td>
-			<td><%= request.created_at %></td>
-			<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
-			<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
-		</tr>
-		<% end %>
+
+			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
+				<td><%= request.user.username %></td>
+				<td><%= @needs_hash[request.need_id] %></td>
+				<td><%= request.user.location %></td>
+				<td><%= request.created_at %></td>
+				<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
+				<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
+			</tr>
+			<% end %>
 	</tbody>
 </table>
 

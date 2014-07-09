@@ -12,7 +12,7 @@
 	Specialty.create(:service_type => service_type)
 end	
 
-["Medication", "Vaccination", "Staff"].each do |need_type|
+["Medication", "Vaccination", "Staff", "Other"].each do |need_type|
 	Need.create(:need_type => need_type)
 end	
 
