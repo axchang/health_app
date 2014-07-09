@@ -24,9 +24,9 @@ resources :users, :only => [:index, :create, :new, :destroy]
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 get '/requests/meet' => "requests#meet"
-get '/requests/update' => "requests#update"
-get 'messages/new' => 'messages#new'
-get 'messages/confirmation' => 'messages#confirmation'
+put '/requests/update' => "requests#update"
+get '/messages/new' => 'messages#new'
+get '/messages/confirmation' => 'messages#confirmation'
 
 resources :requests, only: [:index, :new, :create, :show, :edit, :update]
 resources :needoptins, only: [:index, :new, :create, :edit, :show, :update, :destroy]

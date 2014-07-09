@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@requests = Request.all
+		@requests = Request.where(:status => nil)
 		create_needs_hash
 	end
 
@@ -40,12 +40,13 @@ class RequestsController < ApplicationController
 
 	def update
 		#needs more code here
+		create_needs_hash
 		set_need_types
 		@request = Request.find(params[:request_id])
 		@request.status = "met"
+		@request.save
 		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
-		@request = []
-		@request = Request.where(:status => "met")
+		@requests = Request.where(:status => "met")
 	end
 
 	def destroy
@@ -77,5 +78,3 @@ class RequestsController < ApplicationController
 	end
 
 end
-
-

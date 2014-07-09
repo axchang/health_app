@@ -1,3 +1,4 @@
+<br><br><br><br>
 <h1>Activity Feed </h1>
 
 <table class = "table table-hover">
@@ -6,6 +7,7 @@
 			<th>Requestor Name</th>
 			<th>Need_Id</th>
 			<th>Need Type</th>
+			<th>Description</th>
 			<th>Location</th>
 			<th>Date Met</th>
 		</tr>
@@ -16,9 +18,12 @@
 				<td><%= request.user.username %></td>
 				<td><%= request.need_id %></td>
 				<td><%= @needs_hash[request.need_id] %></td>
+				<td><%= request.description %></td>
 				<td><%= request.user.location %></td>
 				<td><%= request.updated_at %></td>
 			</tr>
 			<% end %>
 	</tbody>
 </table>
+
+<%= link_to "View Unfulfilled Requests", requests_path %>
