@@ -7,5 +7,4 @@ class MessagesController < ApplicationController
 		@request = Request.find(params[:request_id])
 		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
 	end
-
 end
