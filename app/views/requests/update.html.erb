@@ -1,10 +1,11 @@
+<br><br><br><br>
 <h1>Activity Feed </h1>
 
 <table class = "table table-hover">
 	<thead>
 		<tr>
+			<th>Fulfilled By</th>
 			<th>Requestor Name</th>
-			<th>Need_Id</th>
 			<th>Need Type</th>
 			<th>Description</th>
 			<th>Location</th>
@@ -14,8 +15,8 @@
 	<tbody>
 		<% @requests.each do |request| %>
 			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
+				<th><%=	"someone"	%></td>
 				<td><%= request.user.username %></td>
-				<td><%= request.need_id %></td>
 				<td><%= @needs_hash[request.need_id] %></td>
 				<td><%= request.description %></td>
 				<td><%= request.user.location %></td>
@@ -24,3 +25,5 @@
 			<% end %>
 	</tbody>
 </table>
+
+<%= link_to "View Unfulfilled Requests", requests_path %>

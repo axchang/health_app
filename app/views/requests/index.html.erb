@@ -24,9 +24,14 @@
 				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
 				<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
-				<td><%= link_to image_tag("/assets/handshake.png"), "/meets?request_id=#{request.id}" %></td>
+				<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
 			</tr>
 			<% end %>
 	</tbody>
 </table>
+
 </div>
+
+<br><br><br>
+<%= link_to "View Activity Feed", "/requests?status=met" %>
+

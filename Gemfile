@@ -5,14 +5,18 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'devise'
 gem 'active_enum'
 
+#required for SMS functionality
+gem 'twilio-ruby'
+
 gem 'rails_12factor', group: :production
 
 #development gems added by MPC
 group :development do
 	# gem 'jazz_hands'
-	# gem 'better_errors'
+	gem 'better_errors'
 	# gem 'binding_of_caller'
 	gem 'quiet_assets'
+	gem 'binding_of_caller'
 end
 
 gem "bootstrap-sass"
