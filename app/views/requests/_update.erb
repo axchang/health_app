@@ -1,4 +1,4 @@
-<%= form_tag "/requests/update", {:method => 'PUT'} do %>
+<%= form_tag "/requests/update?status=met", {:method => 'PUT'} do %>
 	<div class = "field">
 		<br>
 		<%= label_tag(:message, "Meeting Request Message") %> <br>
@@ -7,7 +7,7 @@
 		<%= check_box_tag(:fulfill, 1) %>
 		<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
 				
-		<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %> >
+		<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %>>
 	</div>
 
 	<div class = "actions">

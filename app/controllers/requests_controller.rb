@@ -1,28 +1,26 @@
 class RequestsController < ApplicationController
 	before_action :set_requests, :only => [:show, :edit, :destroy]
+	before_action :create_needs_hash, :only => [:index, :show, :update]
+	before_action :set_need_types, :only => [:new, :update]
 	# added by MPC - Amy please specify which actions under requests you would like to require authentication
-	before_action :authenticate_user!
+	# before_action :authenticate_user!
 
 	def index
-		@requests = Request.where(:status => nil)
-		create_needs_hash
+		if params[:status] == "met"
+			@requests = Request.where(:status => "met")
+		else
+			@requests = Request.where(:status => nil)
+		end	
 	end
 
 	def new
 		@request = Request.new
-		set_need_types
-	end
-
-	def edit
-		set_need_types
 	end
 
 	def show
-		create_needs_hash
 	end
 
 	def create
-
 		@request = Request.new(request_params.merge({:user_id => current_user.id}))
 		if @request.save	
 			flash[:notice] = "Request was successfully placed."
@@ -34,24 +32,28 @@ class RequestsController < ApplicationController
 		end
 	end
 
+	def community_create
+		@request = Request.new(request_params.merge({:user_id => 1}))
+	end
+
 	def meet
 		@request = Request.find(params[:request_id])
 	end
 
 	def update
-		#needs more code here
-		create_needs_hash
-		set_need_types
 		@request = Request.find(params[:request_id])
 		@request.status = "met"
 		@request.save
 		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
 		@requests = Request.where(:status => "met")
+		if params[:status] == "met"
+			redirect_to "/requests?status=met"
+		else
+			redirect_to requests_path
+		end
 	end
 
 	def destroy
-		@request.destroy
-
 		redirect_to requests_path
 	end
 
