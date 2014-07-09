@@ -1,6 +1,6 @@
-<h1>Request from <%= @request.user.org_name %></h1>
+<h1>Request from <%= @request.user.username %></h1>
 <p>
-	Need type: <%= @request.need %><br>
+	Need type: <%= @needs_hash[@request.need_id] %><br>
 	Request location: <%= @request.user.location %><br>	
 	Request Text: <%= @request.description %><br>
 </p>

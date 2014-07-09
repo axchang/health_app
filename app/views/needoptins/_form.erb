@@ -1,10 +1,10 @@
 <%= form_for(@needoptin) do |f| %>
 	<div class = "field">
 		<!--Gives drop-down of need type-->
-		<%= f.label "Type of Need You Would Like to Receive Notifications About:" %>
+		<%= f.label "Select the Type of Need You Would Like to Receive Notifications About:" %>
 		<%= f.select :need_id, @need_types %>
 	</div>
 	<div class = "actions">
-		<%= f.submit %>
+		<%= f.submit "Create Notification"%>
 	</div>
 <%end%>

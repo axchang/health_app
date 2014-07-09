@@ -4,14 +4,12 @@
 	<thead>
 		<%= link_to "New Notification", new_needoptin_path %>
 		<tr>
-			<th>Need_Id</th>
 			<th>Need Type</th>
 			<th>Recipient</th>
 		</tr>
 	</thead>
 	<tbody>
 			<% current_user.needoptins.all.each do |needoptin| %>
-				<td><%= needoptin.need_id %></td>
 				<td><%= @needs_hash[needoptin.need_id] %></td>
 				<td><%= needoptin.user.email %></td>
 				<td><%= link_to "Delete Notification", needoptin_path(needoptin), :method => :delete %></td>
@@ -19,3 +17,5 @@
 			<% end %>
 	</tbody>
 </table>
+
+<%= link_to "Your Account Profile", users_path %>

@@ -1,15 +1,20 @@
 class RequestsController < ApplicationController
 	before_action :set_requests, :only => [:show, :edit, :destroy]
 	before_action :create_needs_hash, :only => [:index, :show, :update]
-	before_action :set_need_types, :only => [:new, :update]
-	before_action :authenticate_user!, only: [:edit, :update, :destroy]   
+	before_action :set_need_types, :only => [:new, :update, :show]
+	before_action :authenticate_user!, except: [:index]   
 
 	def index
+		@counts = Request.where('status is NOT NULL').group(:fulfiller).count.to_a
 		if params[:status] == "met"
 			@requests = Request.where(:status => "met")
+			@status = params[:status]
+			@requests = @requests.order("updated_at DESC")
 		else
 			@requests = Request.where(:status => nil)
+			@requests = @requests.order("created_at DESC")
 		end	
+
 	end
 
 	def new
@@ -42,10 +47,12 @@ class RequestsController < ApplicationController
 	def update
 		@request = Request.find(params[:request_id])
 		@request.status = "met"
+		@request.fulfiller = "#{current_user.username}"
 		@request.save
 		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
 		@requests = Request.where(:status => "met")
 		if params[:status] == "met"
+			flash[:notice] = "Thank you for taking the effort to meet a request!"
 			redirect_to "/requests?status=met"
 		else
 			redirect_to requests_path
