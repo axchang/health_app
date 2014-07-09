@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
 	before_action :authenticate_user!, only: [:edit, :update, :destroy]   
 
 	def index
+		@counts = Request.where('status is NOT NULL').group(:fulfiller).count.to_a
 		if params[:status] == "met"
 			@requests = Request.where(:status => "met")
 			@status = params[:status]
