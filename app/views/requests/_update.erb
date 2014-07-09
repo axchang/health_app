@@ -1,10 +1,10 @@
-<%= form_tag meets_confirmation_path, {:method => 'GET'} do %>
+<%= form_tag "/requests/update", {:method => 'PUT'} do %>
 	<div class = "field">
 		<br>
-		<%= label_tag(:message, "Message") %> <br>
+		<%= label_tag(:message, "Meeting Request Message") %> <br>
 		<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
 
-		<%= check_box_tag(:fulfill) %>
+		<%= check_box_tag(:fulfill, 1) %>
 		<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
 				
 		<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %> >

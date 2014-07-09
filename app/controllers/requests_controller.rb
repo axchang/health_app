@@ -34,20 +34,30 @@ class RequestsController < ApplicationController
 		end
 	end
 
+	def meet
+		@request = Request.find(params[:request_id])
+	end
+
+	def update
+		#needs more code here
+		set_need_types
+		@request = Request.find(params[:request_id])
+		@request.status = "met"
+		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
+		@request = []
+		@request = Request.where(:status => "met")
+	end
+
 	def destroy
 		@request.destroy
 
 		redirect_to requests_path
 	end
 
-	def update
-		#needs more code here
-		set_need_types
-	end
-
 	private
 
 	def set_requests
+		puts params
 		@request = Request.find(params[:id])
 	end
 
