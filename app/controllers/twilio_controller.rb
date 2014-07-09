@@ -18,12 +18,12 @@ class TwilioController < ApplicationController
 		     render 'second_message.xml.erb', :content_type => 'text/xml'
 		  elsif sms_count == 2
 		  #this may not be ideal if someone adds a request on the web during the SMS interaction
-		    	@request.update(description: params[:Body])
+		    @request.update(description: params[:Body])
 		     render 'third_message.xml.erb', :content_type => 'text/xml'
-		     session["counter"] = -1
+		     session["counter"] = nil
 		   else
 		   	render 'error_message.xml.erb', :content_type => 'text/xml'
-		   	session["counter"] = -1
+		   	session["counter"] = nil
 		   end
 	  session["counter"] += 1
 	  #twiml.text
