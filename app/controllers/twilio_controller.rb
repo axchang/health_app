@@ -22,6 +22,7 @@ class TwilioController < ApplicationController
 		     render 'third_message.xml.erb', :content_type => 'text/xml'
 		     session["counter"] = -1
 		   else
+		   	render 'error_message.xml.erb', :content_type => 'text/xml'
 		   	session["counter"] = -1
 		   end
 	  session["counter"] += 1
