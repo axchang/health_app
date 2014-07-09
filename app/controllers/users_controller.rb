@@ -9,7 +9,7 @@ before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destro
   end
 
   def new
-    @user = User.new
+   @user = User.new
   end
 
   def show
