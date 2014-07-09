@@ -16,11 +16,11 @@ class TwilioController < ApplicationController
 		  elsif session["counter"] == 1   
 		  	render 'second_message.xml.erb', :content_type => 'text/xml'
 		  	@request = Request.create(need_id: params[:Body], user_id: 1)
-		  # elsif session["counter"] == 2
+		  elsif session["counter"] == 2
 		  # #this may not be ideal if someone adds a request on the web during the SMS interaction
-		  #    @request.update(description: params[:Body])
-		  #    render 'third_message.xml.erb', :content_type => 'text/xml'
-		  #    session["counter"] = -1
+		  	render 'third_message.xml.erb', :content_type => 'text/xml'#    
+		  	Request.last.update(description: params[:Body])   
+		  	session["counter"] = -1
 		   else
 		   	render 'error_message.xml.erb', :content_type => 'text/xml'
 		   	session["counter"] = -1
