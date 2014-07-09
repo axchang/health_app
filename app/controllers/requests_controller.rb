@@ -8,9 +8,13 @@ class RequestsController < ApplicationController
 	def index
 		if params[:status] == "met"
 			@requests = Request.where(:status => "met")
+			@status = params[:status]
+			@requests = @requests.order("updated_at DESC")
 		else
 			@requests = Request.where(:status => nil)
+			@requests = @requests.order("created_at DESC")
 		end	
+
 	end
 
 	def new
@@ -43,10 +47,12 @@ class RequestsController < ApplicationController
 	def update
 		@request = Request.find(params[:request_id])
 		@request.status = "met"
+		@request.fulfiller = "#{current_user.username}"
 		@request.save
 		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
 		@requests = Request.where(:status => "met")
 		if params[:status] == "met"
+			flash[:notice] = "Thank you for taking the effort to meet a request!"
 			redirect_to "/requests?status=met"
 		else
 			redirect_to requests_path
