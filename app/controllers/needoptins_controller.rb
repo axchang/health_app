@@ -23,13 +23,19 @@ class NeedoptinsController < ApplicationController
 
 	def create
 		@needoptin = Needoptin.new(needoptin_params.merge({:user_id => current_user.id}))
-		if @needoptin.save
-			redirect_to needoptins_path
-			flash[:notice] = "Notification was successfully established."
-		else
-			flash[:notice] = "Sorry, the action could not be completed. Please try again."
+		if current_user.needoptins.pluck(:need_id).include? @needoptin.need_id  
+			flash[:notice] = "Good news! You alread have a Notification set up for this type of need!"
 			set_need_types
 			render :new
+		else
+			if @needoptin.save
+				redirect_to needoptins_path
+				flash[:notice] = "Notification was successfully established."
+			else
+				flash[:notice] = "Sorry, the action could not be completed. Please try again."
+				set_need_types
+				render :new
+			end
 		end
 	end
 

@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
 	before_action :set_requests, :only => [:show, :edit, :destroy]
 	before_action :create_needs_hash, :only => [:index, :show, :update]
-	before_action :set_need_types, :only => [:new, :update]
+	before_action :set_need_types, :only => [:new, :update, :show]
 	before_action :authenticate_user!, only: [:edit, :update, :destroy]   
 
 	def index
