@@ -10,7 +10,6 @@ class TwilioController < ApplicationController
   # end
 
 	def process_sms
-	  get '/' do
 	  session["counter"] ||= 0
 	  sms_count = session["counter"]
 		  if sms_count == 0
@@ -24,7 +23,6 @@ class TwilioController < ApplicationController
 		  end
 	  twiml = Twilio::TwiML::Response.new do |r|
 	    r.Sms message
-	  end
 	  session["counter"] += 1
 	  twiml.text
 	end
