@@ -1,8 +1,7 @@
 class TwilioController < ApplicationController
 
   # def process_sms
-  #   @city = params[:FromCity].capitalize
-  #   @state = params[:FromState]
+   
   #   @request = Request.create(description: params[:Body], user_id: 1)
   #   #how do we set a user - can we seed this?
 
@@ -10,7 +9,6 @@ class TwilioController < ApplicationController
   # end
 
 	def process_sms
-	  while true 
 	  session["counter"] ||= 0
 	  sms_count = session["counter"]
 		  if sms_count == 0
