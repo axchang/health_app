@@ -15,7 +15,9 @@
 
 //= require_tree .
 
+//= require bootstrap.js
 //= require bootstrap-sprockets
+
 
 
 jQuery(function($){
@@ -24,3 +26,4 @@ jQuery(function($){
 	});
 })
 
+// $('#myModal').modal('show')
