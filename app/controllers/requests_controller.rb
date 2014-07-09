@@ -2,8 +2,7 @@ class RequestsController < ApplicationController
 	before_action :set_requests, :only => [:show, :edit, :destroy]
 	before_action :create_needs_hash, :only => [:index, :show, :update]
 	before_action :set_need_types, :only => [:new, :update]
-	# added by MPC - Amy please specify which actions under requests you would like to require authentication
-	# before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:edit, :update, :destroy]   
 
 	def index
 		if params[:status] == "met"
