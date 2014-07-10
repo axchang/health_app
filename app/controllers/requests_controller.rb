@@ -5,6 +5,8 @@ class RequestsController < ApplicationController
 	#before_action :authenticate_user!, except: [:index, :new]  
 
 	def index
+		@request = Request.new
+		set_need_types
 		@counts = Request.where('status is NOT NULL').group(:fulfiller).count.to_a
 		if params[:status] == "met"
 			@requests = Request.where(:status => "met")
@@ -23,6 +25,8 @@ class RequestsController < ApplicationController
 
 	def show
 	end
+
+
 
 	def create
 		if user_signed_in?

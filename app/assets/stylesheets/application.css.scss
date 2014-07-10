@@ -16,6 +16,8 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import 'index';
+ @import 'home';
 
 html {
 	height: 100%;
@@ -43,7 +45,8 @@ nav {
 	position: fixed;
 	margin-top: 0;
 	height: 13%;
-	background-color: silver ;
+	background-color: white;
+	// background-color: rgba(25,50,80,0.4) ;
 	/*rgb(3, 25, 52)*/
 	border-bottom-style: solid;
 	border-bottom-color: #D3D3D3;
@@ -56,28 +59,33 @@ nav {
 }
 
 nav li {
+	margin-right: 3vw;
+	margin-top: 6vh;
 	float: right;
 	list-style: none;
 	display: inline-block;
-	font-family: sans-serif;
+	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
-	color: #205B75;
+	color: rgb(21,57,82);
+	// #205B75;
 }
 
 nav ul a {
 	text-decoration: none;
-	padding-right: 30px;
-	margin-right: 20px;
+	padding-right: 3%;
+	margin-right: 3%;
 }
 
 nav ul a:hover {
 	text-decoration: underline;
 	border-width: 10px;
+	background-color: rgb(21,56,81);
 }
 
 /*Logo Color*/
 
 .logo{
+	margin-top: 4vh;
 	margin-left: 40px;
 	position: fixed;
 }
@@ -104,7 +112,7 @@ nav ul a:hover {
 	 border-color: #D3D3D3;
 	 background-color: #97CCEE;
 	 color: #0E4961;
-	 font-family: sans-serif;
+	 font-family: 'Roboto', sans-serif;
  }
 
  #requests_forum {
@@ -117,7 +125,7 @@ nav ul a:hover {
  	h1 {
     text-align: center;
     font-size: 30px;
-    font-family: '', sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #D3D3D3;
     color: #0E4961;
     border-radius: 5px;
@@ -138,14 +146,8 @@ nav ul a:hover {
 
 .notice{
 	z-index: 3;
-	padding-top: 5%;
+	padding-top: 10%;
 }
-
-.alert{
-	z-index: 3;
-	padding-top: 5%;
-}
-
 
 
 

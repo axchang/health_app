@@ -1,11 +1,8 @@
 <!-- if this isn't working (on Heroku in particular), try destroying all requests and re-assinging the user id in twilio controller -->
-
 <!DOCTYPE html><!--If request is met-->
 <head>
 	<%= stylesheet_link_tag "index.css.scss", media: "all" %>
 </head>
-
-
 <% if @status == "met" %>
 <head>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -31,68 +28,138 @@
 <body>
 	<div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
-
-
 <h1>Activity Feed </h1>
 <p class = "request_count">
 <%= "#{@requests.count} Requests Met To-Date!" %></p>
-
 <div class = "forum_wrapper">
-<table class = "table table-hover" id="table">
-	<thead>
-		<%= link_to "New Request", new_request_path %><br>
-		<tr>
-			<th>Fulfiller Name</th>
-			<th>Need Fulfilled</th>
-			<th>Need Type</th>
-			<th>Date</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @requests.each do |request| %>
-		<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
-			<td><%= request.fulfiller %></td>
-			<td><%= request.description %></td>
-			<td><%= @needs_hash[request.need_id] %></td>
-			<td><%= request.updated_at %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+	<table class = "table table-hover" id="table">
+		<thead>
+			<%= link_to "New Request", new_request_path %><br>
+			<tr>
+				<th>Fulfiller Name</th>
+				<th>Need Fulfilled</th>
+				<th>Need Type</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @requests.each do |request| %>
+			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
+				<td><%= request.fulfiller %></td>
+				<td><%= request.description %></td>
+				<td><%= @needs_hash[request.need_id] %></td>
+				<td><%= request.updated_at %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
 </div>
-
 <% else %>
 <h1 class = "title"> Requests Forum </h1>
-<p class = "title"> <%= link_to "New Request", new_request_path %> </p>
+
+<!-- Modal Button -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  New Request
+</button>
+ 
+ <!-- The Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+
+     <div id="new_request">
+     <%= form_for(@request) do |f| %>
+	 <div class = "field">
+		<!--Displays the current user's organization name at top of their form -->
+		<%= f.label "From: #{current_user.org_name}" %><br>
+		<!--Gives description text field -->
+		<%= f.label :description %><br>
+		<%= f.text_field :description %><br>
+		<!--Gives drop-down of need type for request filtering -->
+		<%= f.label "Type of Need" %>
+		<%= f.select :need_id, @need_types %>
+	</div>
+	
+ 
+   </div>
+      </div>
+      <div class="modal-footer">
+      	<div class = "actions"><%= f.submit %></div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <%end%>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <div class = "forum_wrapper">
-<table class = "table table-hover" id = "table">
-	<thead>
-		<tr>
-			<th>Requestor Name</th>
-			<th>Need Type</th>
-			<th>Location</th>
-			<th>Date</th>
-			<th>Send Message</th>
-			<th>Meet Request</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @requests.each do |request| %>
-		<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
-			<td><%= request.user.username %></td>
-			<td><%= @needs_hash[request.need_id] %></td>
-			<td><%= request.user.location %></td>
-			<td><%= request.created_at %></td>
-			<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
-			<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+	<table class = "table table-hover" id = "table">
+		<thead>
+			<tr>
+				<th>Requestor Name</th>
+				<th>Need Type</th>
+				<th>Location</th>
+				<th>Date</th>
+				<th>Send Message</th>
+				<th>Meet Request</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @requests.each do |request| %>
+			<tr class = "requests_table_row" >
+				<td><%= request.user.username %></td>
+				<td><%= @needs_hash[request.need_id] %></td>
+				<td><%= request.user.location %></td>
+				<td><%= request.created_at %></td>
+				<td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#request<%= request.id %>">Send message</button></td>
+				<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
+			</tr>
+			<div class="modal fade" id="request<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<h4 class="modal-title" id="myModalLabel">Send Message</h4>
+						</div>
+						<div class="modal-body">
+							<h3>Recipient: <%= "#{request.user.username}" %> </h3>
+							<%= form_tag messages_confirmation_path, {:method => 'GET'} do %>
+							<div class = "field">
+								<br>
+								<%= label_tag(:message, "Message") %> <br>
+								<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
+								
+								<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %> >
+							</div>
+							<div class = "actions">
+								<%= submit_tag "Send message" %>
+							</div>
+							<br><br><br>
+							<% end %>
+							<%= link_to "Back", requests_path %>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% end %>
+		</tbody>
+	</table>
 </div>
 <% end %>
-
-	<br><br><br>
-	<%= link_to "View Activity Feed", "/requests?status=met" %>
-
+<br><br><br>
+<%= link_to "View Activity Feed", "/requests?status=met" %>
 </html>
