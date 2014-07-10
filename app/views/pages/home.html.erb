@@ -43,32 +43,35 @@
 </div>
 <!-- Modal Body -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-   <h4 class="modal-title" id="myModalLabel">Sign In</h4>
-</div>
-<div class="modal-body">
-   <!-- <h2>Sign In</h2> -->
-   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-   <div><%= f.label :email %><br />
-   <%= f.email_field :email, autofocus: true %></div>
-   <div><%= f.label :password %><br/>
-   <%= f.password_field :password, autocomplete: "off" %></div>
-   <% if devise_mapping.rememberable? -%>
-   <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-   <%= render "devise/shared/links" %>
-   <% end %>
-</div>
-<div class="modal-footer">
-   <div id="modal_footer">
-      <div><%= f.submit "Sign In" %></div>
-      <div><br/><br/><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
-   </div>
-   <% end -%>
-</div>
-</div>
-</div>
+
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sign In</h4>
+      </div>
+      <div class="modal-body">
+  
+       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div><%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %></div>
+        <div><%= f.label :password %><br/>
+        <%= f.password_field :password, autocomplete: "off" %></div>
+        <% if devise_mapping.rememberable? -%>
+        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+        <% end %>
+        <%= render "devise/shared/links" %>
+      </div>
+      <div class="modal-footer">
+
+        <div id="modal_footer">
+          <div><%= f.submit "Sign In" %></div>
+         <div><br/><br/><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>
+         </div>
+        <% end -%>
+      </div>
+    </div>
+  </div>
 </div>
 </html>
