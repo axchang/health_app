@@ -1,58 +1,50 @@
-
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-      </ol>
-       <!-- Carousel  -->
-      <div class="carousel-inner">
-        <div class="item active" id="stethoscope">
-          <img src="/assets/stethoscope3.jpg", alt="First Slide"> 
-        </div>
-
-        <div class="item" id="pharmacist">
-          <img src="/assets/pharmacist4.jpg" alt="Third slide">
-             <div class="container">
-            </div>
-          </div>
-
-        <div class="item" id="need">
-          <img src="/assets/need2.jpg" alt="Fourth slide">
-             <div class="container"> 
-            </div> 
-        </div>
-    </div>
-
-      <!-- Controls -->
-      <div id="carousel-controls">
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a> 
-    </div> 
-  </div>
-
-<!--Buttons and Carousel caption divs-->
-   <div class="container"> 
-    <div id="carousel-caption">
-      <p><strong>Insight</strong> provides an enhanced health provider understanding of community needs by mapping currently existing services within the Western Cape.</p>
-    </div>
-
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Health Provider Sign In
-    </button>
-
-      <div><a class="btn btn-lg btn-primary" href="#" role="button">Make a Request</a></div>
-
-    </div>
+<html>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+   <!-- Indicators -->
+   <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+      <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+   </ol>
+   <!-- Carousel  -->
+   <div class="carousel-inner">
+      <div class="item active" id="stethoscope">
+         <img src="/assets/stethoscope3.jpg", alt="First Slide">
+      </div>
+      <div class="item" id="pharmacist">
+         <img src="/assets/pharmacist4.jpg" alt="Third slide">
+         <div class="container">
+         </div>
+      </div>
+      <div class="item" id="need">
+         <img src="/assets/need2.jpg" alt="Fourth slide">
+         <div class="container">
+         </div>
+      </div>
    </div>
-    </div> 
-  </div>
-
-
-  <!-- Modal Body -->
-       
+   <!-- Controls -->
+   <div id="carousel-controls">
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+   </div>
+</div>
+<!--Buttons and Carousel caption divs-->
+<div class="container">
+   <div id="carousel-caption">
+      <p><strong>Insight</strong> provides an enhanced health provider understanding of community needs by mapping currently existing services within the Western Cape.</p>
+   </div>
+   <div class = "home_button" id="provider_sign_in"><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+   Health Provider Sign In
+   </button></div>
+   <div class = "home_button" id = "make_request_btn"><a class="btn btn-lg btn-primary" href="#" role="button">Make a Request</a></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Body -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -82,6 +74,4 @@
     </div>
   </div>
 </div>
-
-
-
+</html>
