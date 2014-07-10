@@ -1,12 +1,13 @@
 <!DOCTYPE html><!--If request is met-->
+<head>
+	<%= stylesheet_link_tag "index.css.scss", media: "all" %>
+</head>
+
+
 <% if @status == "met" %>
-<h1>Activity Feed </h1>
-<p class = "request_count">
-<%= "#{@requests.count} Requests Met To-Date!" %></p>
-<html class = "index_class">
-	<head>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script type="text/javascript">
+<head>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
 		google.load("visualization", "1", {packages:["corechart"]});
 		google.setOnLoadCallback(drawChart);
 		function drawChart() {
@@ -17,19 +18,25 @@
 		<% end %>
 		]);
 		var options = {
-		title: 'Health Provider Performance: Number of Requests Fulfilled',
-		vAxis: {title: 'Provider Name',  titleTextStyle: {color: 'black'}}
+			title: 'Health Provider Performance: Number of Requests Fulfilled',
+			vAxis: {title: 'Provider Name',  titleTextStyle: {color: 'black'}}
 		};
 		var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
+			chart.draw(data, options);
 		}
-		</script>
-	</head>
-	<body>
-		<div id="chart_div" style="width: 900px; height: 500px;"></div>
-	</body>
-</html>
-<table class = "table table-hover">
+	</script>
+</head>
+<body>
+	<div id="chart_div" style="width: 900px; height: 500px;"></div>
+</body>
+
+
+<h1>Activity Feed </h1>
+<p class = "request_count">
+<%= "#{@requests.count} Requests Met To-Date!" %></p>
+
+<div class = "forum_wrapper">
+<table class = "table table-hover" id="table">
 	<thead>
 		<%= link_to "New Request", new_request_path %><br>
 		<tr>
@@ -50,11 +57,14 @@
 		<% end %>
 	</tbody>
 </table>
+</div>
+
 <% else %>
-<h1> Requests Forum </h1>
-<table class = "table table-hover">
+<h1 class = "title"> Requests Forum </h1>
+<p class = "title"> <%= link_to "New Request", new_request_path %> </p>
+<div class = "forum_wrapper">
+<table class = "table table-hover" id = "table">
 	<thead>
-		<%= link_to "New Request", new_request_path %>
 		<tr>
 			<th>Requestor Name</th>
 			<th>Need Type</th>
@@ -66,20 +76,21 @@
 	</thead>
 	<tbody>
 		<% @requests.each do |request| %>
-
-			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
-				<td><%= request.user.username %></td>
-				<td><%= @needs_hash[request.need_id] %></td>
-				<td><%= request.user.location %></td>
-				<td><%= request.created_at %></td>
-				<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
-				<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
-			</tr>
-			<% end %>
+		<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
+			<td><%= request.user.username %></td>
+			<td><%= @needs_hash[request.need_id] %></td>
+			<td><%= request.user.location %></td>
+			<td><%= request.created_at %></td>
+			<td><%= link_to image_tag("/assets/email_icon.png"), "/messages/new?request_id=#{request.id}" %></td>
+			<td><%= link_to image_tag("/assets/handshake.png"), "/requests/meet?request_id=#{request.id}" %></td>
+		</tr>
+		<% end %>
 	</tbody>
 </table>
-
+</div>
 <% end %>
-<br><br><br>
-<%= link_to "View Activity Feed", "/requests?status=met" %>
+
+	<br><br><br>
+	<%= link_to "View Activity Feed", "/requests?status=met" %>
+
 </html>
