@@ -36,7 +36,7 @@ class RequestsController < ApplicationController
 				render :new
 			end
 		else
-			@request = Request.new(request_params.merge({:user_id => 5}))
+			@request = Request.new(request_params.merge({:user_id => 2}))
 			if @request.save	
 				flash[:notice] = "Request was successfully placed."
 				redirect_to '/requests'
