@@ -1,7 +1,7 @@
 <%= form_for(@request) do |f| %>
 	<div class = "field">
 		<!--Displays the anonymous username at top of their form - may need to change when re-seeded -->
-		<%= f.label "From: #{User.find(5).username}"  %><br>
+		<%= f.label "From: #{User.find(2).username}"  %><br>
 		<!--Gives description text field -->
 		<%= f.label :description %><br>
 		<%= f.text_field :description %><br>
