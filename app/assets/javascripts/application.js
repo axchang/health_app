@@ -15,7 +15,6 @@
 
 //= require_tree .
 
-//= require bootstrap.js
 //= require bootstrap-sprockets
 
 
