@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>HealthApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-
-<body>
-	<div class="fixed">
-      <div class="logo">
-         <%= image_tag 'insight.png', :class => 'logo_img'%>
+  <head>
+    <title>HealthApp</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav>
+      <div class="fixed">
+        <a href = "/"><%= image_tag 'logo.png', id: 'logo_img', class: "logo" %></a>
       </div>
-   </div>
-   <div class="navigation">
-   <nav>
       <ul>
-   	 <li><%= link_to "CONTACT US", pages_contact_path %></li>
-   	 <li><%= link_to "ABOUT", pages_about_path %></li>
-   	 <li><%= link_to "HOME", root_path %></li>
-     </ul>
-   </nav>
-   </div>
-  <!--Space to push below the navbar-->
-  <div class = "spacer">
+        <% if current_user.nil? %>
+          <li><%= link_to "CONTACT US", pages_contact_path %></li>
+          <li><%= link_to "ABOUT", pages_about_path %></li>
+          <li><%= link_to "HOME", root_path %></li>
+        <% elsif !current_user.nil? %>
+          <li><%= "WELCOME, #{current_user.username}!" %></li>
+          <li><%= link_to "PROFILE", users_path %></li>
+          <li><%= link_to "REQUESTS", requests_path %></li>
+          <li><%= link_to "ACTIVITY FEED", "/requests?status=met" %></li>
+        <% end %>
+      </ul>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+    <div class="footer">
+        <% if user_signed_in? %>
+          <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+        <% else %>
+        <% end %>
     </div>
-
-
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
-
-<%= yield %>
-
-<div class="footer">
-    <% if user_signed_in? %>
-      <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-    <% else %>
-    <% end %>
-
-  </div>
-
-
-</body>
+  </body>
 </html>

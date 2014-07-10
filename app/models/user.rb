@@ -8,5 +8,4 @@ class User < ActiveRecord::Base
 	has_many :needoptins
 	has_many :locations
 
-	
 end

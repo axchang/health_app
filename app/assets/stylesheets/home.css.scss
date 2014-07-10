@@ -19,7 +19,7 @@
 }
 
 #carousel-caption {
-	background-color: rgba(255,255,255,0.4);
+	background-color: rgba(0,0,0,0.6);
 	font-size: 20px;
 	text-align: center;
 	font-style: "sans-serif";
@@ -36,13 +36,11 @@
 	z-index: 2;
 	font-style: "sans";
 	display: inline-block;
-	float: right;
 
 	div {
 	/*display: block;*/
 	padding: 5%;
-	float: right;
-}
+	}
 
 }
 
@@ -53,6 +51,7 @@
 	right: 0px;
 	bottom: 0px;
 	position: relative;
+	top: -10px;
 	}
 }
 

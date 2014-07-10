@@ -34,41 +34,40 @@ body {
 
 /*Blue Border at the Top*/
 
-.fixed {
+/*Navigation*/
+
+nav {
 	position: fixed;
 	width: 100%;
+	float: right;
+	position: fixed;
+	margin-top: 0;
 	height: 13%;
-	background-color: #FFF;
+	background-color: silver ;
+	/*rgb(3, 25, 52)*/
 	border-bottom-style: solid;
 	border-bottom-color: #D3D3D3;
 	border-bottom-width: 4px;
 	z-index: 1;
+	ul {
+		float: right;
+		vertical-align: middle;
+	}
 }
 
-/*Navigation*/
-
-.navigation {
-	float: right;
-	position: fixed;
-	z-index: 1;
-	margin-left: 60vw;
-	margin-top: 10px;
-}
-
-.navigation li {
+nav li {
 	float: right;
 	list-style: none;
 	display: inline-block;
-}
-
-.navigation ul a {
-	text-decoration: none;
-	color: #205B75;
 	font-family: sans-serif;
 	font-size: 12px;
+	color: #205B75;
+}
+
+nav ul a {
+	text-decoration: none;
 	padding-right: 30px;
 	margin-right: 20px;
-
 }
 
 nav ul a:hover {
@@ -80,12 +79,10 @@ nav ul a:hover {
 
 .logo{
 	margin-left: 40px;
-	margin-top: 5px;
-	padding: 10px, 30px;
 	position: fixed;
 }
 
-.logo_img{
+#logo_img{
 	max-width: 120px;
 	max-height: 240px;
 }
@@ -139,10 +136,15 @@ nav ul a:hover {
 	margin-right: 15px;
 }
 
+.notice{
+	z-index: 3;
+	padding-top: 5%;
+}
 
-
-
-
+.alert{
+	z-index: 3;
+	padding-top: 5%;
+}
 
 
 
