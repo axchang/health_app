@@ -10,6 +10,8 @@ gem 'twilio-ruby'
 
 gem 'rails_12factor', group: :production
 
+gem 'googlecharts'
+
 #development gems added by MPC
 group :development do
 	# gem 'jazz_hands'
