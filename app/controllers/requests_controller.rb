@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 	before_action :set_requests, :only => [:show, :edit, :destroy]
 	before_action :create_needs_hash, :only => [:index, :show, :update]
 	before_action :set_need_types, :only => [:new, :update, :show]
-	before_action :authenticate_user!, except: [:index]  
+	#before_action :authenticate_user!, except: [:index, :new]  
 
 	def index
 		@request = Request.new
@@ -27,16 +27,27 @@ class RequestsController < ApplicationController
 	end
 
 
-
 	def create
-		@request = Request.new(request_params.merge({:user_id => current_user.id}))
-		if @request.save	
-			flash[:notice] = "Request was successfully placed."
-			redirect_to '/requests'
+		if user_signed_in?
+			@request = Request.new(request_params.merge({:user_id => current_user.id}))
+			if @request.save	
+				flash[:notice] = "Request was successfully placed."
+				redirect_to '/requests'
+			else
+				flash[:notice] = "Sorry, the action could not be completed. Please try again."
+				set_need_types
+				render :new
+			end
 		else
-			flash[:notice] = "Sorry, the action could not be completed. Please try again."
-			set_need_types
-			render :new
+			@request = Request.new(request_params.merge({:user_id => 2}))
+			if @request.save	
+				flash[:notice] = "Request was successfully placed."
+				redirect_to '/requests'
+			else
+				flash[:notice] = "Sorry, the action could not be completed. Please try again."
+				set_need_types
+				render :new
+			end
 		end
 	end
 
