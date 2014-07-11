@@ -4,58 +4,63 @@
 	<%= stylesheet_link_tag "index.css.scss", media: "all" %>
 </head>
 <% if @status == "met" %>
-<head>
-	<div id="activity_wrapper">
-		<div id="google_charts">
-	<h1>Activity Feed </h1>
-	<h2 class = "request_count"><%= "#{@requests.count} Requests Met To-Date!" %></h2>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript">
-		google.load("visualization", "1", {packages:["corechart"]});
-		google.setOnLoadCallback(drawChart);
-		function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-		['Health Provider', 'Requests Fulfilled'],
-		<% @counts.each_with_index do |(name, count), index| %>
-			[ '<%=name%>' , <%=count%> ] <%="," unless index == @counts.size-1 %>
-		<% end %>
-		]);
-		var options = {
-			width: 700, height: 500,
-			title: 'Health Provider Performance: Number of Requests Fulfilled',
-			vAxis: {title: 'Provider Name',  titleTextStyle: {color: 'black'}}
-		};
-		var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-			chart.draw(data, options);
-		}
-	</script>
-       </div>
-</head>
-<body>
-	<div id="chart_div" style="width: 900px; height: 500px;"></div>
-</body>
-<div class = "forum_wrapper">
-	<table class = "table table-hover" id="table">
-		<thead>
-			<tr>
-				<th>Fulfiller Name</th>
-				<th>Need Fulfilled</th>
-				<th>Need Type</th>
-				<th>Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @requests.each do |request| %>
-			<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
-				<td><%= request.fulfiller %></td>
-				<td><%= request.description %></td>
-				<td><%= @needs_hash[request.need_id] %></td>
-				<td><%= request.updated_at %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
+
+<div class = "activities_body">
+	<div style="float: left" class="chart_area">
+		<head>
+			<h1>Activity Feed </h1>
+			<h2 class = "request_count"><%= "#{@requests.count} Requests Met To-Date!" %></h2>
+			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+			<script type="text/javascript">
+				google.load("visualization", "1", {packages:["corechart"]});
+				google.setOnLoadCallback(drawChart);
+				function drawChart() {
+				var data = google.visualization.arrayToDataTable([
+				['Health Provider', 'Requests Fulfilled'],
+				<% @counts.each_with_index do |(name, count), index| %>
+					[ '<%=name%>' , <%=count%> ] <%="," unless index == @counts.size-1 %>
+				<% end %>
+				]);
+				var options = {
+					width: 700, height: 500,
+					title: 'Health Provider Performance: Number of Requests Fulfilled',
+					vAxis: {title: 'Provider Name',  titleTextStyle: {color: 'black'}}
+					// animation:{
+						//      		duration: 1000,
+						//      		easing: 'in'
+						//    		},
+				};
+				var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+					chart.draw(data, options);
+				}
+			</script>
+		</head>
+		<body>
+			<div id="chart_div" style="width: 900px; height: 500px;"></div>
+		</body>
+	</div>
+	<div class = "forum_wrapper" style="float: right">
+		<table class = "table table-hover" id="table">
+			<thead>
+				<tr>
+					<th>Fulfiller Name</th>
+					<th>Need Fulfilled</th>
+					<th>Need Type</th>
+					<th>Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @requests.each do |request| %>
+				<tr data-link="<%= request_path(request) %>" class = "requests_table_row" >
+					<td><%= request.fulfiller %></td>
+					<td><%= request.description %></td>
+					<td><%= @needs_hash[request.need_id] %></td>
+					<td><%= request.updated_at %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
 <% else %>
 <h1 class = "title"> Requests Forum </h1>
@@ -64,7 +69,6 @@
 New Request
 </button>
 <a class="btn btn-lg btn-primary" href="/requests?status=met" role="button">View Fulfilled Requests</a>
-
 <!-- The Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -82,7 +86,7 @@ New Request
 						<%= f.label "From: #{current_user.org_name}" %><br>
 						<!--Gives description text field -->
 						<%= f.label :description %><br>
-						<%= f.text_field :description %><br>
+						<%= f.text_field :description, :size => "40x30" %><br>
 						<!--Gives drop-down of need type for request filtering -->
 						<%= f.label "Type of Need" %>
 						<%= f.select :need_id, @need_types %>
@@ -105,7 +109,7 @@ New Request
 			<tr>
 				<th>Requestor Name</th>
 				<th>Need Type</th>
-				<th>Location</th>
+				<th>Description</th>
 				<th>Date</th>
 				<th>Send Message</th>
 				<th>Meet Request</th>
@@ -116,77 +120,63 @@ New Request
 			<tr class = "requests_table_row" >
 				<td><%= request.user.username %></td>
 				<td><%= @needs_hash[request.need_id] %></td>
-				<td><%= request.user.location %></td>
+				<td><%= request.description %></td>
 				<td><%= request.created_at %></td>
 				<td><a id="mail_icon" data-toggle="modal" data-target="#request<%= request.id %>"><img src="/assets/email_icon.png"></a></td>
-				<td><a id="handshake_icon" data-toggle="modal" data-target="#Meet_Request"><img src="/assets/handshake.png"></a></td>
-
-               </tr>
-			<div class="modal fade" id="request<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							<h4 class="modal-title" id="myModalLabel">Send Message</h4>
+				<td><a id="handshake_icon" data-toggle="modal" data-target="#meet<%= request.id %>"><img src="/assets/handshake.png"></a>
+			</td>
+		</tr>
+		<div class="modal fade" id="request<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">Send Message</h4>
+					</div>
+					
+					<div class="modal-body">
+						<%= "Recipient: #{request.user.username}" %>
+						<%= form_tag messages_confirmation_path, {:method => 'GET'} do %>
+						<div class = "field">
+							<br>
+							<%= label_tag(:message, "Message") %> <br>
+							<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
+							<input type="hidden" name="request_id" value= <%="#{request.id}" %> >
 						</div>
-						
-                         <div class="modal-body">
-							<h3>Recipient: <%= "#{request.user.username}" %> </h3>
-							<%= form_tag messages_confirmation_path, {:method => 'GET'} do %>
-							<div class = "field">
-								<br>
-								<%= label_tag(:message, "Message") %> <br>
-								<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
-								
-								<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %> >
-							</div>
-							<br><br><br>
-							<% end %>
-							<%= link_to "Back", requests_path %>
-						</div>
-
-
+                       <%end%>
+                       <%= link_to "Back", requests_path %>
+                       <div>
 		
-						<class="modal-footer">
+						<div class="modal-footer">
 							<div class = "actions">
-								<%= submit_tag "Send message" %>
-							</div>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<%= submit_tag "Send message" %>	
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-			
-			<div class="modal fade" id="Meet_Request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-							<h4 class="modal-title" id="myModalLabel">Send Message</h4>
-						</div>
-						
-                    <div class="modal-body">
+		</div>
+		
+		<div class="modal fade" id="meet<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">Meet Request</h4>
+					</div>
+					<div class="modal-body">
 						<%= form_tag "/requests/update?status=met", {:method => 'PUT'} do %>
 						<div class = "field">
-						<br>
-						<%= label_tag(:message, "Meeting Request Message") %> <br>
-						<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
-
-						<%= check_box_tag(:fulfill, 1) %>
-						<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
-						<% end %>
-						<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %>>
-					</div>
-
-                     
-			          <br><br><br>
+							<br>
+							<%= label_tag(:message, "Meeting Request Message") %> <br>
+							<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
+							<%= check_box_tag(:fulfill, 1) %>
+							<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
+							<% end %>
+							<input type="hidden" name="request_id" value= <%="#{request.id}" %> >
+						</div>
 						<div class="modal-footer">
-							<div class = "actions">
-		             <%= submit_tag "Send message" %>
-	                  </div>
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<div class = "actions"><%= submit_tag "Meet Request", class: "btn btn-info" %>
+							</div>
 						</div>
 					</div>
 				</div>
