@@ -160,3 +160,80 @@ nav ul a:hover {
    }
 }
 
+#user_profile_body {
+  margin-left: 60px;
+  margin-right: 40px;
+  position: relative;
+
+  li {
+  	list-style: none;
+  }
+}
+
+
+
+#account_information {
+	margin-left: 40px;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #184261;
+    margin: 5%;
+    padding-left: 40px;
+    padding-top: 0px;
+    border-width: 10px;
+    border-radius: 30px;
+    bottom: 10%;
+    margin-right: 150px;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+
+    h2 {
+    	margin-top: 20px;
+    	margin-left: 20px;
+    }
+}
+
+#notification_settings {
+	margin-left: 40px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #184261;
+    margin: 5%;
+    padding-left: 40px;
+    padding-top: 4px;
+    border-width: 10px;
+    border-radius: 30px;
+    bottom: 10%;
+    margin-right: 150px;
+    top: 2%;
+	h2 {
+		margin-left: 20px;
+		margin-top: 20px;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	p {
+		margin-left: 40px;
+	}
+}
+
+
+h1 {
+    	text-decoration: underline;
+    	font-family: 'Roboto', sans-serif;
+    	margin-left: 60px;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
