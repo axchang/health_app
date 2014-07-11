@@ -1,12 +1,7 @@
 <!-- if this isn't working (on Heroku in particular), try destroying all requests and re-assinging the user id in twilio controller -->
-<!DOCTYPE html><!--If request is met-->
-<head>
-	<%= stylesheet_link_tag "index.css.scss", media: "all" %>
-</head>
 <% if @status == "met" %>
 <div class = "activities_body">
 	<div style="float: left" class="chart_area">
-		<head>
 			<h1>Activity Feed </h1>
 			<h2 class = "request_count"><%= "#{@requests.count} Requests Met To-Date!" %></h2>
 			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -33,10 +28,7 @@
 					chart.draw(data, options);
 				}
 			</script>
-		</head>
-		<body>
-			<div id="chart_div" style="width: 900px; height: 500px;"></div>
-		</body>
+		<div id="chart_div" style="width: 900px; height: 500px;"></div>
 	</div>
 	<div class = "forum_wrapper" style="float: right">
 		<table class = "table table-hover" id="table">
@@ -62,128 +54,102 @@
 	</div>
 </div>
 <% else %>
-<h1 class = "title"> Requests Forum </h1>
-<!-- Modal Button -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-New Request
-</button>
-<a class="btn btn-lg btn-primary" href="/requests?status=met" role="button">View Fulfilled Requests</a>
-<!-- The Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			</div>
-			<div class="modal-body">
-				
-				<div id="new_request">
-					<%= form_for(@request) do |f| %>
-					<div class = "field">
-						<!--Displays the current user's organization name at top of their form -->
-						<%= f.label "From: #{current_user.org_name}" %><br>
-						<!--Gives description text field -->
-						<%= f.label :description %><br>
-						<%= f.text_field :description, :size => "40x30" %><br>
-						<!--Gives drop-down of need type for request filtering -->
-						<%= f.label "Type of Need" %>
-						<%= f.select :need_id, @need_types %>
-					</div>
-					
-					
+	<h1 class = "title"> Requests Forum </h1>
+	<!-- Modal Button -->
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	New Request
+	</button>
+	<a class="btn btn-lg btn-primary" href="/requests?status=met" role="button">View Fulfilled Requests</a>
+	<!-- The Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<div class = "actions"><%= f.submit %></div>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<%end%>
+				<div class="modal-body">
+					
+					<div id="new_request">
+						<%= form_for(@request) do |f| %>
+						<div class = "field">
+							<!--Displays the current user's organization name at top of their form -->
+							<%= f.label "From: #{current_user.org_name}" %><br>
+							<!--Gives description text field -->
+							<%= f.label :description %><br>
+							<%= f.text_field :description, :size => "40x30" %><br>
+							<!--Gives drop-down of need type for request filtering -->
+							<%= f.label "Type of Need" %>
+							<%= f.select :need_id, @need_types %>
+						</div>
+						
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class = "actions"><%= f.submit %></div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<%end%>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class = "requests_wrapper">
-	<table class = "table table-hover" id = "table">
-		<thead>
-			<tr>
-				<th>Requestor Name</th>
-				<th>Need Type</th>
-				<th>Description</th>
-				<th>Date</th>
-				<th>Send Message</th>
-				<th>Meet Request</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @requests.each do |request| %>
-			<tr class = "requests_table_row" >
-				<td><%= request.user.username %></td>
-				<td><%= @needs_hash[request.need_id] %></td>
-				<td><%= request.description %></td>
-				<td><%= request.created_at %></td>
-				<td><a id="mail_icon" data-toggle="modal" data-target="#request<%= request.id %>"><img src="/assets/email_icon.png"></a></td>
-				<td><a id="handshake_icon" data-toggle="modal" data-target="#meet<%= request.id %>"><img src="/assets/handshake.png"></a>
-			</td>
-		</tr>
-		<div class="modal fade" id="request<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="myModalLabel">Send Message</h4>
-					</div>
-					
-					<div class="modal-body">
-						<%= "Recipient: #{request.user.username}" %>
-						<%= form_tag messages_confirmation_path, {:method => 'GET'} do %>
-						<div class = "field">
-							<br>
-							<%= label_tag(:message, "Message") %> <br>
-							<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
-							<input type="hidden" name="request_id" value= <%="#{request.id}" %> >
-						</div>
-						<br><br><br>
-						<% end %>
-						<%= link_to "Back", requests_path %>
-					</div>
-					
-					<div class="modal-footer">
-						<div class = "actions">
-							<%= submit_tag "Send message", class: 'btn btn-info' %>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="modal fade" id="meet<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="myModalLabel">Meet Request</h4>
-					</div>
-					<div class="modal-body">
-						<%= form_tag "/requests/update?status=met", {:method => 'PUT'} do %>
-						<div class = "field">
-							<br>
-							<%= label_tag(:message, "Meeting Request Message") %> <br>
-							<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
-							<%= check_box_tag(:fulfill, 1) %>
-							<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
-							<% end %>
-							<input type="hidden" name="request_id" value= <%="#{request.id}" %> >
-						</div>
-						<br><br><br>
-						<div class="modal-footer">
-							<div class = "actions"><%= submit_tag "Meet Request", class: "btn btn-info" %></div>
+	<div class = "requests_wrapper">
+		<table class = "table table-hover" id = "table">
+			<thead>
+				<tr>
+					<th>Requestor Name</th>
+					<th>Need Type</th>
+					<th>Description</th>
+					<th>Date</th>
+					<th>Send Message</th>
+					<th>Meet Request</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @requests.each do |request| %>
+				<tr class = "requests_table_row" >
+					<td><%= request.user.username %></td>
+					<td><%= @needs_hash[request.need_id] %></td>
+					<td><%= request.description %></td>
+					<td><%= request.created_at %></td>
+					<td>
+						<a id="mail_icon" data-toggle="modal" data-target="#request<%= request.id %>"><img src="/assets/email_icon.png"></a></td>
+					<td>
+						<a id="handshake_icon" data-toggle="modal" data-target="#meet<%= request.id %>"><img src="/assets/handshake.png"></a>
+					</td>
+				</tr>
+				
+				<%= render :partial => 'send_message', :locals => {:req => request} %>
+				
+				<div class="modal fade" id="meet<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabel">Meet Request</h4>
+							</div>
+							<div class="modal-body">
+								<%= form_tag "/requests/update?status=met", {:method => 'PUT'} do %>
+									<div class = "field">
+										<br>
+										<%= label_tag(:message, "Meeting Request Message") %> <br>
+										<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
+										<%= check_box_tag(:fulfill, 1) %>
+										<%= label_tag(:fulfill, "I am fulfilling this request") %><br><br>
+										<input type="hidden" name="request_id" value= <%="#{request.id}" %> >
+									</div>
+									<div class="modal-footer">
+										<div class="actions">
+											<%= submit_tag "Meet Request", class: "btn btn-primary" %>
+										</div>
+									</div>
+								<% end %>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<% end %>
-		</tbody>
-	</table>
-</div>
+				<% end %>	
+			</tbody>
+		</table>
+	</div>
 <% end %>
-</html>
