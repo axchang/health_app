@@ -25,9 +25,9 @@
 					title: 'Health Provider Performance: Number of Requests Fulfilled',
 					vAxis: {title: 'Provider Name',  titleTextStyle: {color: 'black'}}
 					// animation:{
-				//      		duration: 1000,
-				//      		easing: 'in'
-				//    		},
+						//      		duration: 1000,
+						//      		easing: 'in'
+						//    		},
 				};
 				var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
 					chart.draw(data, options);
@@ -38,7 +38,7 @@
 			<div id="chart_div" style="width: 900px; height: 500px;"></div>
 		</body>
 	</div>
-	<div class = "forum_wrapper" style="float: right"> 
+	<div class = "forum_wrapper" style="float: right">
 		<table class = "table table-hover" id="table">
 			<thead>
 				<tr>
@@ -163,7 +163,6 @@ New Request
 						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 						<h4 class="modal-title" id="myModalLabel">Meet Request</h4>
 					</div>
-					
 					<div class="modal-body">
 						<%= form_tag "/requests/update?status=met", {:method => 'PUT'} do %>
 						<div class = "field">
