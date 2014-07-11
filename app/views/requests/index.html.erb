@@ -5,6 +5,8 @@
 </head>
 <% if @status == "met" %>
 <head>
+	<h1>Activity Feed </h1>
+	<h2 class = "request_count"><%= "#{@requests.count} Requests Met To-Date!" %></h2>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 		google.load("visualization", "1", {packages:["corechart"]});
@@ -17,6 +19,7 @@
 		<% end %>
 		]);
 		var options = {
+			width: 700, height: 500,
 			title: 'Health Provider Performance: Number of Requests Fulfilled',
 			vAxis: {title: 'Provider Name',  titleTextStyle: {color: 'black'}}
 		};
@@ -28,13 +31,9 @@
 <body>
 	<div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
-<h1>Activity Feed </h1>
-<p class = "request_count">
-<%= "#{@requests.count} Requests Met To-Date!" %></p>
 <div class = "forum_wrapper">
 	<table class = "table table-hover" id="table">
 		<thead>
-			<%= link_to "New Request", new_request_path %><br>
 			<tr>
 				<th>Fulfiller Name</th>
 				<th>Need Fulfilled</th>
@@ -56,51 +55,47 @@
 </div>
 <% else %>
 <h1 class = "title"> Requests Forum </h1>
-
 <!-- Modal Button -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  New Request
+New Request
 </button>
- 
- <!-- The Modal -->
+<a class="btn btn-lg btn-primary" href="/requests?status=met" role="button">View Fulfilled Requests</a>
 
+<!-- The Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        
-
-     <div id="new_request">
-     <%= form_for(@request) do |f| %>
-	 <div class = "field">
-		<!--Displays the current user's organization name at top of their form -->
-		<%= f.label "From: #{current_user.org_name}" %><br>
-		<!--Gives description text field -->
-		<%= f.label :description %><br>
-		<%= f.text_field :description %><br>
-		<!--Gives drop-down of need type for request filtering -->
-		<%= f.label "Type of Need" %>
-		<%= f.select :need_id, @need_types %>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			</div>
+			<div class="modal-body">
+				
+				<div id="new_request">
+					<%= form_for(@request) do |f| %>
+					<div class = "field">
+						<!--Displays the current user's organization name at top of their form -->
+						<%= f.label "From: #{current_user.org_name}" %><br>
+						<!--Gives description text field -->
+						<%= f.label :description %><br>
+						<%= f.text_field :description %><br>
+						<!--Gives drop-down of need type for request filtering -->
+						<%= f.label "Type of Need" %>
+						<%= f.select :need_id, @need_types %>
+					</div>
+					
+					
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class = "actions"><%= f.submit %></div>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<%end%>
+			</div>
+		</div>
 	</div>
-   </div>
-      </div>
-      <div class="modal-footer">
-      	<div class = "actions"><%= f.submit %></div>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       <%end%>
-       </div>
-    </div>
-  </div>
 </div>
-
-
-
-
-<div class = "forum_wrapper">
+<div class = "requests_wrapper">
 	<table class = "table table-hover" id = "table">
 		<thead>
 			<tr>
@@ -119,12 +114,10 @@
 				<td><%= @needs_hash[request.need_id] %></td>
 				<td><%= request.user.location %></td>
 				<td><%= request.created_at %></td>
-				<td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#request<%= request.id %>">Send Message</button></td>
-				<td><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#Meet_Request">Meet Request</button>
-               </td>
+				<td><a id="mail_icon" data-toggle="modal" data-target="#request<%= request.id %>"><img src="/assets/email_icon.png"></a></td>
+				<td><a id="handshake_icon" data-toggle="modal" data-target="#Meet_Request"><img src="/assets/handshake.png"></a></td>
 
                </tr>
-
 			<div class="modal fade" id="request<%= request.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -183,13 +176,15 @@
 						<input type="hidden" name="request_id" value= <%="#{params[:request_id]}" %>>
 					</div>
 
-          
+                     
 
 					
 			          <br><br><br>
 						<div class="modal-footer">
+							<div class = "actions">
+		             <%= submit_tag "Send message" %>
+	                  </div>
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
 						</div>
 					</div>
 				</div>
@@ -199,7 +194,4 @@
 	</table>
 </div>
 <% end %>
-
-<br><br><br>
-<%= link_to "View Activity Feed", "/requests?status=met" %>
 </html>
