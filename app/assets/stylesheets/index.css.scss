@@ -13,14 +13,53 @@
 // 	margin-left: 5%;
 // }
 
+//Set the headers of both Activity and Requests
+h1, h2{
+	margin-top:5%;
+	margin-left:5%;
+	color: rgb(24,66,97);
+}
+
+// Set the font and etc of 'Activity Feed' Title
+h1{
+	margin-bottom:-3%;
+	font-family: 'Raleway', sans-serif;
+}
+
+//Set the New Request button to the right place
+.btn-primary{
+	margin-left:5%;
+	margin-top: 5%;
+	margin-bottom: -2.5%;
+}
+
+//Sets the Requests Forum positioning and etc.
+.requests_wrapper{
+	border: solid;
+	border-width: 10px;
+	border-radius: 30px;
+	border-color: rgb(24,66,97);
+	margin: 5%;
+	padding: 2%;
+	height: 75vh;
+	overflow: scroll;
+	.mail_icon:hover{
+		cursor: pointer;
+	}
+}
+
 .forum_wrapper{
+	margin-top: 5%;
 	margin-left: 5%;
 	margin-right: 5%;
 	border: solid;
 	border-width: 10px;
 	border-radius: 30px;
-	border-color: rgb(21,57,82);
+	border-color: rrgb(24,66,97);
 	padding: 2%;
+	width: 500px;
+	height: 400px;
+	overflow: scroll;
 }
 
 // #table{

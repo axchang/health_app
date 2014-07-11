@@ -77,7 +77,8 @@ nav ul a {
 }
 
 nav ul a:hover {
-	text-decoration: underline;
+	text-decoration: bold;
+	color: rgb(192,180,99);
 	border-width: 10px;
 	background-color: rgb(21,56,81);
 }
