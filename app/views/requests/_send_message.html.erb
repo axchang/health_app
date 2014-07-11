@@ -1,0 +1,31 @@
+<div class="modal fade" id="request<%= req.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Send Message</h4>
+			</div>
+			<%= form_tag messages_confirmation_path, {:method => 'GET'} do %>
+			<div class="modal-body">
+				<%= "Recipient: #{req.user.username}" %>
+				
+				<div class = "field">
+					<br>
+					<%= label_tag(:message, "Message") %> <br>
+					<%= text_area_tag :message, "", :size => "70x20" %> <br><br>
+					<input type="hidden" name="request_id" value= <%="#{req.id}" %> >
+				</div>
+				<br><br><br>
+				
+				<%= link_to "Back", requests_path %>
+			</div>
+			
+			<div class="modal-footer">
+				<div class = "actions">
+					<%= submit_tag "Send message", class: 'btn btn-info' %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
