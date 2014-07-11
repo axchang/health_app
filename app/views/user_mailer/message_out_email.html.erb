@@ -1,2 +1,4 @@
-<p>The following </p>
-<%= @message %>
+<p>Dear <%=@request.user.username %>,<br><br>Congratulations! A health provider has agreed to meet your health request. For further details, see the custom message below:<br><br> </p>
+<%= "Sender: #{@current_user.username}" %><br><br>
+<%= "Reply-to: #{@current_user.email}" %><br><br>
+<%= "Message: #{@message}" %>

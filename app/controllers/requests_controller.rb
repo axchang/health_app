@@ -64,7 +64,7 @@ class RequestsController < ApplicationController
 		@request.status = "met"
 		@request.fulfiller = "#{current_user.username}"
 		@request.save
-		UserMailer.message_out_email(current_user, params[:message], @request.user.email).deliver
+		UserMailer.message_out_email(current_user, params[:message], @request).deliver
 		@requests = Request.where(:status => "met")
 		if params[:status] == "met"
 			flash[:notice] = "Thank you for taking the effort to meet a request!"
