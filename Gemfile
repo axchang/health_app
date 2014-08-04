@@ -28,8 +28,8 @@ gem 'rails', '4.1.1'
 
 
 # Use sqlite3 as the database for Active Record in dev mode, postgres in production
-gem 'sqlite3', group: :development
-
+# gem 'sqlite3', group: :development
+gem 'pg'
 
 
 # Use SCSS for stylesheets
